@@ -1,6 +1,7 @@
 package teamroots.embers.entity;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,13 +13,16 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import teamroots.embers.Embers;
 import teamroots.embers.RegistryManager;
 import teamroots.embers.network.PacketHandler;
 import teamroots.embers.network.message.MessageEmberSizedBurstFX;
-import teamroots.embers.particle.ParticleUtil;
-
+import teamroots.embers.particle.ParticleGlow;
+ 
+import teamroots.embers.proxy.ClientProxy;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 //import elucent.albedo.lighting.ILightProvider;
@@ -111,7 +115,7 @@ public class EntityEmberProjectile extends Entity/* implements ILightProvider*/ 
             if (getEntityWorld().isRemote) {
                 for (double i = 0; i < 9; i++) {
                     double coeff = i / 9.0;
-                    ParticleUtil.spawnParticleGlow(getEntityWorld(), (float) (prevPosX + (posX - prevPosX) * coeff), (float) (prevPosY + (posY - prevPosY) * coeff), (float) (prevPosZ + (posZ - prevPosZ) * coeff), 0.0125f * (rand.nextFloat() - 0.5f), 0.0125f * (rand.nextFloat() - 0.5f), 0.0125f * (rand.nextFloat() - 0.5f), 255, 64, 16, getDataManager().get(value) / 1.75f, 24);
+                    spawnParticleGlow(getEntityWorld(), (float) (prevPosX + (posX - prevPosX) * coeff), (float) (prevPosY + (posY - prevPosY) * coeff), (float) (prevPosZ + (posZ - prevPosZ) * coeff), 0.0125f * (rand.nextFloat() - 0.5f), 0.0125f * (rand.nextFloat() - 0.5f), 0.0125f * (rand.nextFloat() - 0.5f), 255, 64, 16, getDataManager().get(value) / 1.75f, 24);
                 }
             }
             List<EntityLivingBase> rawEntities = getEntityWorld().getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(posX - getDataManager().get(value) * 0.125, posY - getDataManager().get(value) * 0.125, posZ - getDataManager().get(value) * 0.125, posX + getDataManager().get(value) * 0.125, posY + getDataManager().get(value) * 0.125, posZ + getDataManager().get(value) * 0.125));
@@ -152,7 +156,21 @@ public class EntityEmberProjectile extends Entity/* implements ILightProvider*/ 
             motionZ = 0;
         }
     }
+    public static Random random = new Random();
+    public static int counter = 0;
 
+    public static void spawnParticleGlow(World world, float x, float y, float z, float vx, float vy, float vz, float r, float g, float b, float scale, int lifetime) {
+  
+            counter += random.nextInt(3);
+            if (counter % (Minecraft.getMinecraft().gameSettings.particleSetting == 0 ? 1 : 2 * Minecraft.getMinecraft().gameSettings.particleSetting) == 0) {
+                ClientProxy.particleRenderer.addParticle(new ParticleGlow(world, x, y, z, vx, vy, vz, r, g, b, 1.0f, scale, lifetime));
+            }
+         
+    }
+
+ 
+
+ 
 	/*@Method(modid = "albedo")
     @Override
 	public Light provideLight() {

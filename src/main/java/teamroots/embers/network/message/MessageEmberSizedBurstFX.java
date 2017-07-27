@@ -8,8 +8,9 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import teamroots.embers.particle.ParticleUtil;
-
+import teamroots.embers.Embers;
+import teamroots.embers.particle.ParticleGlow; 
+import teamroots.embers.proxy.ClientProxy;
 import java.util.Random;
 
 public class MessageEmberSizedBurstFX implements IMessage {
@@ -46,18 +47,32 @@ public class MessageEmberSizedBurstFX implements IMessage {
     }
 
     public static class MessageHolder implements IMessageHandler<MessageEmberSizedBurstFX, IMessage> {
-        @SideOnly(Side.CLIENT)
+      public static Random random = new Random();
+      public static int counter = 0;
+
+     
+      @SideOnly(Side.CLIENT)
         @Override
         public IMessage onMessage(final MessageEmberSizedBurstFX message, final MessageContext ctx) {
             if (ctx.side == Side.CLIENT) {
                 Minecraft.getMinecraft().addScheduledTask(() -> {
                     World world = Minecraft.getMinecraft().world;
                     for (int k = 0; k < 80; k++) {
-                        ParticleUtil.spawnParticleGlow(world, (float) message.posX, (float) message.posY, (float) message.posZ, ((float) message.value / 3.5f) * 0.125f * (random.nextFloat() - 0.5f), ((float) message.value / 3.5f) * 0.125f * (random.nextFloat() - 0.5f), ((float) message.value / 3.5f) * 0.125f * (random.nextFloat() - 0.5f), 255, 64, 16, 1.0f, (float) message.value, 24);
+                        spawnParticleGlow(world, (float) message.posX, (float) message.posY, (float) message.posZ, ((float) message.value / 3.5f) * 0.125f * (random.nextFloat() - 0.5f), ((float) message.value / 3.5f) * 0.125f * (random.nextFloat() - 0.5f), ((float) message.value / 3.5f) * 0.125f * (random.nextFloat() - 0.5f), 255, 64, 16, 1.0f, (float) message.value, 24);
                     }
                 });
             }
             return null;
+        }
+        
+        
+
+        public static void spawnParticleGlow(World world, float x, float y, float z, float vx, float vy, float vz, float r, float g, float b, float a, float scale, int lifetime) {
+                 counter += random.nextInt(3);
+                if (counter % (Minecraft.getMinecraft().gameSettings.particleSetting == 0 ? 1 : 2 * Minecraft.getMinecraft().gameSettings.particleSetting) == 0) {
+                    ClientProxy.particleRenderer.addParticle(new ParticleGlow(world, x, y, z, vx, vy, vz, r, g, b, a, scale, lifetime));
+                }
+             
         }
     }
 
