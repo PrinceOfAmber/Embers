@@ -1,7 +1,5 @@
 package teamroots.embers.item;
-
-import baubles.api.BaubleType;
-import baubles.api.IBauble;
+ 
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -19,7 +17,7 @@ import teamroots.embers.util.Misc;
 
 import java.util.List;
 
-public class ItemEmberBulb extends ItemBase implements IBauble, IInventoryEmberCell, IHeldEmberCell, IEmberItem {
+public class ItemEmberBulb extends ItemBase implements  IInventoryEmberCell, IHeldEmberCell, IEmberItem {
 
     public ItemEmberBulb() {
         super("ember_bulb", true);
@@ -160,11 +158,7 @@ public class ItemEmberBulb extends ItemBase implements IBauble, IInventoryEmberC
         }
         return value;
     }
-
-    @Override
-    public BaubleType getBaubleType(ItemStack arg0) {
-        return BaubleType.TRINKET;
-    }
+ 
 
     @SideOnly(Side.CLIENT)
     public static class ColorHandler implements IItemColor {
