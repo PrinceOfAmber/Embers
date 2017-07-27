@@ -32,7 +32,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
-import teamroots.embers.damage.DamageEmber;
 import teamroots.embers.entity.*;
    
 
@@ -53,7 +52,7 @@ public class RegistryManager {
 
     //    CapabilityManager.INSTANCE.register(IEmberCapability.class, new EmberCapabilityStorage(), DefaultEmberCapability.class);
 
-        damage_ember = new DamageEmber();
+        damage_ember = new DamageGolem();
 
  
   

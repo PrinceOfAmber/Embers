@@ -14,19 +14,19 @@ import org.lwjgl.opengl.GL11;
 import java.util.ArrayList;
 
 public class ParticleRenderer {
-    ArrayList<Particle> particles = new ArrayList<Particle>();
+    ArrayList<IEmberParticle> particles = new ArrayList<IEmberParticle>();
 
     public void updateParticles() {
         boolean doRemove = false;
         for (int i = 0; i < particles.size(); i++) {
             doRemove = true;
             if (particles.get(i) != null) {
-                if (particles.get(i) instanceof IEmberParticle) {
-                    if (((IEmberParticle) particles.get(i)).alive()) {
+              
+                    if (( particles.get(i)).alive()) {
                         particles.get(i).onUpdate();
                         doRemove = false;
                     }
-                }
+              
             }
             if (doRemove) {
                 particles.remove(i);
@@ -60,11 +60,11 @@ public class ParticleRenderer {
             GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
             buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
             for (int i = 0; i < particles.size(); i++) {
-                if (particles.get(i) instanceof IEmberParticle) {
-                    if (!((IEmberParticle) particles.get(i)).isAdditive()) {
+              
+                    if (!( particles.get(i)).isAdditive()) {
                         particles.get(i).renderParticle(buffer, player, partialTicks, f, f4, f1, f2, f3);
                     }
-                }
+                
             }
             tess.draw();
 
@@ -72,7 +72,7 @@ public class ParticleRenderer {
             buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
             for (int i = 0; i < particles.size(); i++) {
                 if (particles.get(i) != null) {
-                    if (((IEmberParticle) particles.get(i)).isAdditive()) {
+                    if (( particles.get(i)).isAdditive()) {
                         particles.get(i).renderParticle(buffer, player, partialTicks, f, f4, f1, f2, f3);
                     }
                 }
@@ -83,11 +83,11 @@ public class ParticleRenderer {
             GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
             buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
             for (int i = 0; i < particles.size(); i++) {
-                if (particles.get(i) instanceof IEmberParticle) {
-                    if (!((IEmberParticle) particles.get(i)).isAdditive() && ((IEmberParticle) particles.get(i)).renderThroughBlocks()) {
+              
+                    if (!( particles.get(i)).isAdditive() && ( particles.get(i)).renderThroughBlocks()) {
                         particles.get(i).renderParticle(buffer, player, partialTicks, f, f4, f1, f2, f3);
                     }
-                }
+                
             }
             tess.draw();
 
@@ -95,7 +95,7 @@ public class ParticleRenderer {
             buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.PARTICLE_POSITION_TEX_COLOR_LMAP);
             for (int i = 0; i < particles.size(); i++) {
                 if (particles.get(i) != null) {
-                    if (((IEmberParticle) particles.get(i)).isAdditive() && ((IEmberParticle) particles.get(i)).renderThroughBlocks()) {
+                    if (( particles.get(i)).isAdditive() && ( particles.get(i)).renderThroughBlocks()) {
                         particles.get(i).renderParticle(buffer, player, partialTicks, f, f4, f1, f2, f3);
                     }
                 }
@@ -111,7 +111,7 @@ public class ParticleRenderer {
         }
     }
 
-    public void addParticle(Particle particle) {
+    public void addParticle(IEmberParticle particle) {
         particles.add(particle);
     }
 }
