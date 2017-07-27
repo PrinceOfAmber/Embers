@@ -131,7 +131,7 @@ public class RegistryManager {
         }
         biomes.addAll(BiomeManager.oceanBiomes);
 
-        EntityRegistry.addSpawn(EntityAncientGolem.class, ConfigManager.ancientGolemSpawnWeight, 1, 1, EnumCreatureType.MONSTER, biomes.toArray(new Biome[biomes.size()]));
+        EntityRegistry.addSpawn(EntityAncientGolem.class, 25, 1, 1, EnumCreatureType.MONSTER, biomes.toArray(new Biome[biomes.size()]));
  
  
     }

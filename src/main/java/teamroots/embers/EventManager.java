@@ -95,7 +95,7 @@ public class EventManager {
 //                EmberGenUtil.offZ++;
 //                EmberWorldData.get(event.world).markDirty();
 //            }
-            PacketHandler.INSTANCE.sendToAll(new MessageEmberGenOffset(EmberGenUtil.offX, EmberGenUtil.offZ));
+            //PacketHandler.INSTANCE.sendToAll(new MessageEmberGenOffset(EmberGenUtil.offX, EmberGenUtil.offZ));
         }
     }
  
@@ -149,11 +149,11 @@ public class EventManager {
                 if (player != null) {
                     //if (data.emberData != null){
                     //if (data.emberData.containsKey(""+((int)player.posX) / 16 + " " + ((int)player.posZ) / 16)){
-                    double ratio = EmberGenUtil.getEmberDensity(world.getSeed(), player.getPosition().getX(), player.getPosition().getZ());
+                   // double ratio = EmberGenUtil.getEmberDensity(world.getSeed(), player.getPosition().getX(), player.getPosition().getZ());
                     if (gaugeAngle == 0) {
-                        gaugeAngle = 165.0 + 210.0 * ratio;
+                 //       gaugeAngle = 165.0 + 210.0 * ratio;
                     } else {
-                        gaugeAngle = gaugeAngle * 0.99 + 0.01 * (165.0 + 210.0 * ratio);
+                   //     gaugeAngle = gaugeAngle * 0.99 + 0.01 * (165.0 + 210.0 * ratio);
                     }
                     //}
                     //}

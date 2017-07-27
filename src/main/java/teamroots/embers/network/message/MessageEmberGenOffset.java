@@ -6,8 +6,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import teamroots.embers.util.EmberGenUtil;
+import net.minecraftforge.fml.relauncher.SideOnly; 
 
 import java.util.Random;
 
@@ -42,8 +41,8 @@ public class MessageEmberGenOffset implements IMessage {
         @Override
         public IMessage onMessage(final MessageEmberGenOffset message, final MessageContext ctx) {
             Minecraft.getMinecraft().addScheduledTask(() -> {
-                EmberGenUtil.offX = message.offX;
-                EmberGenUtil.offZ = message.offZ;
+//                EmberGenUtil.offX = message.offX;
+//                EmberGenUtil.offZ = message.offZ;
             });
             return null;
         }

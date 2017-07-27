@@ -8,8 +8,6 @@ import teamroots.embers.Embers;
 import teamroots.embers.RegistryManager;
 
 import teamroots.embers.network.PacketHandler; 
-  
-import teamroots.embers.util.EmberGenUtil;
  
 
 public class CommonProxy {
@@ -18,8 +16,7 @@ public class CommonProxy {
  //       Fields.init();
         PacketHandler.registerMessages();
         RegistryManager.registerAll();
-        EmberGenUtil.init();
- 
+   
  
     }
 

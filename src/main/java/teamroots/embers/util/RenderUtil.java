@@ -35,10 +35,10 @@ public class RenderUtil {
             int offZ = (int) (6f * tick);
             float sine = (float) Math.sin(coeff * Math.PI * 2.0f + 0.25f * (tick)) + 0.25f * (float) Math.sin(coeff * Math.PI * 3.47f + 0.25f * (tick));
             float sineOff = (4.0f + (float) thickness) / 3.0f;
-            float minusDensity = EmberGenUtil.getEmberDensity(1, offX + (int) (tx - thickness * orthoX * thickCoeff), offZ + (int) (ty - thickness * orthoY * thickCoeff));
-            float plusDensity = EmberGenUtil.getEmberDensity(1, offX + (int) (tx - thickness * orthoX * thickCoeff), offZ + (int) (ty - thickness * orthoY * thickCoeff));
-            b.pos(tx - thickness * (0.5f + minusDensity) * orthoX * thickCoeff - thickCoeff * orthoX * sine * sineOff, ty - thickness * (0.5f + minusDensity) * orthoY * thickCoeff - thickCoeff * orthoY * sine * sineOff, 0).color(1.0f, 0.25f, 0.0625f, (float) Math.pow(0.5f * (float) Math.max(0, thickCoeff - 0.4f) * minusDensity, 1)).endVertex();
-            b.pos(tx + thickness * (0.5f + plusDensity) * orthoX * thickCoeff - thickCoeff * orthoX * sine * sineOff, ty + thickness * (0.5f + plusDensity) * orthoY * thickCoeff - thickCoeff * orthoY * sine * sineOff, 0).color(1.0f, 0.25f, 0.0625f, (float) Math.pow(0.5f * (float) Math.max(0, thickCoeff - 0.4f) * plusDensity, 1)).endVertex();
+//            float minusDensity = EmberGenUtil.getEmberDensity(1, offX + (int) (tx - thickness * orthoX * thickCoeff), offZ + (int) (ty - thickness * orthoY * thickCoeff));
+//            float plusDensity = EmberGenUtil.getEmberDensity(1, offX + (int) (tx - thickness * orthoX * thickCoeff), offZ + (int) (ty - thickness * orthoY * thickCoeff));
+//            b.pos(tx - thickness * (0.5f + minusDensity) * orthoX * thickCoeff - thickCoeff * orthoX * sine * sineOff, ty - thickness * (0.5f + minusDensity) * orthoY * thickCoeff - thickCoeff * orthoY * sine * sineOff, 0).color(1.0f, 0.25f, 0.0625f, (float) Math.pow(0.5f * (float) Math.max(0, thickCoeff - 0.4f) * minusDensity, 1)).endVertex();
+//            b.pos(tx + thickness * (0.5f + plusDensity) * orthoX * thickCoeff - thickCoeff * orthoX * sine * sineOff, ty + thickness * (0.5f + plusDensity) * orthoY * thickCoeff - thickCoeff * orthoY * sine * sineOff, 0).color(1.0f, 0.25f, 0.0625f, (float) Math.pow(0.5f * (float) Math.max(0, thickCoeff - 0.4f) * plusDensity, 1)).endVertex();
         }
     }
 
@@ -54,15 +54,15 @@ public class RenderUtil {
             double angle2 = Math.PI * 2.0 * coeff2;
             float tick = Minecraft.getMinecraft().getRenderPartialTicks() + EventManager.ticks;
             double calcAngle2 = angle2;
-            float density1 = EmberGenUtil.getEmberDensity(4, (int) (480.0 * angle), 4 * (int) tick + (int) (4.0f * thickness));
-            float density2 = EmberGenUtil.getEmberDensity(4, (int) (480.0 * calcAngle2), 4 * (int) tick + (int) (4.0f * thickness));
-            double tx = x1 + Math.sin(angle + 0.03125f * tick) * (thickness - (thickness * 0.5f * density1));
-            double ty = y1 + Math.cos(angle + 0.03125f * tick) * (thickness - (thickness * 0.5f * density1));
-            double tx2 = x1 + Math.sin(angle2 + 0.03125f * tick) * (thickness - (thickness * 0.5f * density2));
-            double ty2 = y1 + Math.cos(angle2 + 0.03125f * tick) * (thickness - (thickness * 0.5f * density2));
-            b.pos(x1, y1, 0).color(1.0f, 0.25f, 0.0625f, 1.0f).endVertex();
-            b.pos(tx, ty, 0).color(1.0f, 0.25f, 0.0625f, 0.0f).endVertex();
-            b.pos(tx2, ty2, 0).color(1.0f, 0.25f, 0.0625f, 0.0f).endVertex();
+//            float density1 = EmberGenUtil.getEmberDensity(4, (int) (480.0 * angle), 4 * (int) tick + (int) (4.0f * thickness));
+//            float density2 = EmberGenUtil.getEmberDensity(4, (int) (480.0 * calcAngle2), 4 * (int) tick + (int) (4.0f * thickness));
+//            double tx = x1 + Math.sin(angle + 0.03125f * tick) * (thickness - (thickness * 0.5f * density1));
+//            double ty = y1 + Math.cos(angle + 0.03125f * tick) * (thickness - (thickness * 0.5f * density1));
+//            double tx2 = x1 + Math.sin(angle2 + 0.03125f * tick) * (thickness - (thickness * 0.5f * density2));
+//            double ty2 = y1 + Math.cos(angle2 + 0.03125f * tick) * (thickness - (thickness * 0.5f * density2));
+//            b.pos(x1, y1, 0).color(1.0f, 0.25f, 0.0625f, 1.0f).endVertex();
+//            b.pos(tx, ty, 0).color(1.0f, 0.25f, 0.0625f, 0.0f).endVertex();
+//            b.pos(tx2, ty2, 0).color(1.0f, 0.25f, 0.0625f, 0.0f).endVertex();
         }
     }
 
@@ -70,15 +70,15 @@ public class RenderUtil {
         for (int i = 0; i < 20; i++) {
             double angle = Math.PI * 2.0 * ((double) i) / 20.0;
             double angle2 = Math.PI * 2.0 * ((double) (i + 1)) / 20.0;
-            float tick = Minecraft.getMinecraft().getRenderPartialTicks() + EventManager.ticks;
-            double radiusBonus = (double) EmberGenUtil.getEmberDensity(4, (int) (20.0 * angle), (int) tick);
-            double tx = x + Math.cos(angle) * 40.0;//(radius+radius*0.1*radiusBonus);
-            double ty = y + Math.sin(angle) * 40.0;//(radius+radius*0.1*radiusBonus);
-            double tx2 = x + Math.cos(angle2) * 40.0;//(radius+radius*0.1*radiusBonus);
-            double ty2 = y + Math.sin(angle2) * 40.0;//(radius+radius*0.1*radiusBonus);
-            b.pos(x, y, 0.0).color(1.0f, 0.25f, 0.0625f, 1.0f).endVertex();
-            b.pos(tx, ty, 0.0).color(1.0f, 0.25f, 0.0625f, 1.0f).endVertex();
-            b.pos(tx2, ty2, 0.0).color(1.0f, 0.25f, 0.0625f, 1.0f).endVertex();
+//            float tick = Minecraft.getMinecraft().getRenderPartialTicks() + EventManager.ticks;
+//            double radiusBonus = (double) EmberGenUtil.getEmberDensity(4, (int) (20.0 * angle), (int) tick);
+//            double tx = x + Math.cos(angle) * 40.0;//(radius+radius*0.1*radiusBonus);
+//            double ty = y + Math.sin(angle) * 40.0;//(radius+radius*0.1*radiusBonus);
+//            double tx2 = x + Math.cos(angle2) * 40.0;//(radius+radius*0.1*radiusBonus);
+//            double ty2 = y + Math.sin(angle2) * 40.0;//(radius+radius*0.1*radiusBonus);
+//            b.pos(x, y, 0.0).color(1.0f, 0.25f, 0.0625f, 1.0f).endVertex();
+//            b.pos(tx, ty, 0.0).color(1.0f, 0.25f, 0.0625f, 1.0f).endVertex();
+//            b.pos(tx2, ty2, 0.0).color(1.0f, 0.25f, 0.0625f, 1.0f).endVertex();
         }
     }
 
