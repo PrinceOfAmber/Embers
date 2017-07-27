@@ -10,7 +10,7 @@ public class ModelManager {
 
     public static void init() {
         models.put("ancientGolem", new ModelGolem());
-        models.put("beamCannon", new ModelBeamCannon());
-        models.put("ashenCloak", new ModelArmorHolder("ashenCloak"));
+//        models.put("beamCannon", new ModelBeamCannon());
+//        models.put("ashenCloak", new ModelArmorHolder("ashenCloak"));
     }
 }
