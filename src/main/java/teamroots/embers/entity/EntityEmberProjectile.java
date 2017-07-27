@@ -14,11 +14,11 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import teamroots.embers.Embers;
-import teamroots.embers.RegistryManager;
-import teamroots.embers.network.PacketHandler;
+import teamroots.embers.RegistryManager; 
 import teamroots.embers.particle.ParticleGlow;
  
 import teamroots.embers.proxy.ClientProxy;
+import teamroots.embers.proxy.CommonProxy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -84,7 +84,7 @@ public class EntityEmberProjectile extends Entity/* implements ILightProvider*/ 
     public void onUpdate() {
         super.onUpdate();
         if (!getEntityWorld().isRemote && getDataManager().get(lifetime) > 18 && getDataManager().get(dead)) {
-            PacketHandler.INSTANCE.sendToAll(new MessageEmberSizedBurstFX(posX, posY, posZ, getDataManager().get(value) / 1.75f));
+          CommonProxy.INSTANCE.sendToAll(new MessageEmberSizedBurstFX(posX, posY, posZ, getDataManager().get(value) / 1.75f));
         }
         getDataManager().set(lifetime, getDataManager().get(lifetime) - 1);
         getDataManager().setDirty(lifetime);
@@ -104,7 +104,7 @@ public class EntityEmberProjectile extends Entity/* implements ILightProvider*/ 
             IBlockState state = getEntityWorld().getBlockState(getPosition());
             if (state.isFullCube() && state.isOpaqueCube()) {
                 if (!getEntityWorld().isRemote) {
-                    PacketHandler.INSTANCE.sendToAll(new MessageEmberSizedBurstFX(posX, posY, posZ, getDataManager().get(value) / 1.75f));
+                  CommonProxy.INSTANCE.sendToAll(new MessageEmberSizedBurstFX(posX, posY, posZ, getDataManager().get(value) / 1.75f));
                     getDataManager().set(lifetime, 20);
                     getDataManager().setDirty(lifetime);
                     this.getDataManager().set(dead, true);
@@ -141,7 +141,7 @@ public class EntityEmberProjectile extends Entity/* implements ILightProvider*/ 
                         target.attackEntityFrom(source, getDataManager().get(value));
                     }
                     if (!getEntityWorld().isRemote) {
-                        PacketHandler.INSTANCE.sendToAll(new MessageEmberSizedBurstFX(posX, posY, posZ, getDataManager().get(value) / 1.75f));
+                      CommonProxy.INSTANCE.sendToAll(new MessageEmberSizedBurstFX(posX, posY, posZ, getDataManager().get(value) / 1.75f));
                         getDataManager().set(lifetime, 20);
                         getDataManager().setDirty(lifetime);
                         this.getDataManager().set(dead, true);
