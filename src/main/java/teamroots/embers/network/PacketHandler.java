@@ -9,7 +9,7 @@ public class PacketHandler {
   public static SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Embers.MODID);
   private static int id = 0;
   public static void registerMessages() {
-    INSTANCE.registerMessage(MessageEmberSparkleFX.MessageHolder.class, MessageEmberSparkleFX.class, id++, Side.CLIENT);
+    //INSTANCE.registerMessage(MessageEmberSparkleFX.MessageHolder.class, MessageEmberSparkleFX.class, id++, Side.CLIENT);
     INSTANCE.registerMessage(MessageEmberSizedBurstFX.MessageHolder.class, MessageEmberSizedBurstFX.class, id++, Side.CLIENT);
     INSTANCE.registerMessage(MessageSpawnEmberProj.MessageHolder.class, MessageSpawnEmberProj.class, id++, Side.SERVER);
   }
