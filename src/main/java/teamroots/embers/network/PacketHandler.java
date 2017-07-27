@@ -3,6 +3,8 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import teamroots.embers.Embers;
+import teamroots.embers.entity.MessageEmberSizedBurstFX;
+import teamroots.embers.entity.MessageSpawnEmberProj;
 import teamroots.embers.network.message.*;
 
 public class PacketHandler {

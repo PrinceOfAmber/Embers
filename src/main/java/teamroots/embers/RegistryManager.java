@@ -34,8 +34,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import teamroots.embers.damage.DamageEmber;
 import teamroots.embers.entity.*;
-  
-import teamroots.embers.util.Misc; 
+   
 
 import java.util.ArrayList;
 import java.util.List;

@@ -16,7 +16,6 @@ import net.minecraft.world.World;
 import teamroots.embers.Embers;
 import teamroots.embers.RegistryManager;
 import teamroots.embers.network.PacketHandler;
-import teamroots.embers.network.message.MessageEmberSizedBurstFX;
 import teamroots.embers.particle.ParticleGlow;
  
 import teamroots.embers.proxy.ClientProxy;

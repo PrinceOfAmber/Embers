@@ -1,4 +1,4 @@
-package teamroots.embers.network.message;
+package teamroots.embers.entity;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;

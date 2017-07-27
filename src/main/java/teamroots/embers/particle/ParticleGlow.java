@@ -5,8 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import teamroots.embers.util.Misc;
+import net.minecraft.world.World; 
 
 public class ParticleGlow extends Particle implements IEmberParticle {
     public float colorR = 0;
