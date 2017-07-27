@@ -1,5 +1,4 @@
 package teamroots.embers;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -27,67 +26,42 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
+import teamroots.embers.golem.ParticleGlow;
 import teamroots.embers.proxy.ClientProxy;
 import teamroots.embers.util.*;
 import java.util.*;
 
 public class EventManager {
-    public static boolean hasRenderedParticles = false;
-    public static float emberEyeView = 0; 
-    public static float frameTime = 0;
-    public static float frameCounter = 0;
-    public static long prevTime = 0;
-    public static EnumHand lastHand = EnumHand.MAIN_HAND;
-    public static float starlightRed = 255;
-    public static float starlightGreen = 32;
-    public static float starlightBlue = 255;
-    public static float tickCounter = 0;
-    public static double currentEmber = 0;
-    public static boolean allowPlayerRenderEvent = true;
-    public static int ticks = 0;
-    public static float prevCooledStrength = 0;
-    public static boolean acceptUpdates = true;
-    public static Map<BlockPos, TileEntity> toUpdate = new HashMap<BlockPos, TileEntity>();
-    public static Map<BlockPos, TileEntity> overflow = new HashMap<BlockPos, TileEntity>();
-    static EntityPlayer clientPlayer = null;
-    double gaugeAngle = 0;
-    Random random = new Random();
  
-    @SideOnly(Side.CLIENT)
-    @SubscribeEvent
-    public void onTextureStitch(TextureStitchEvent event) {
-        ResourceLocation particleGlow = new ResourceLocation("embers:entity/particle_mote");
-        event.getMap().registerSprite(particleGlow);
-        ResourceLocation particleSparkle = new ResourceLocation("embers:entity/particle_star");
-        event.getMap().registerSprite(particleSparkle);
-        ResourceLocation particleSmoke = new ResourceLocation("embers:entity/particle_smoke");
-        event.getMap().registerSprite(particleSmoke);
+  static float tickCounter = 0;
+ 
+  static int ticks = 0;
+ 
+  static EntityPlayer clientPlayer = null;
+  double gaugeAngle = 0;
+  Random random = new Random();
+  @SideOnly(Side.CLIENT)
+  @SubscribeEvent
+  public void onTextureStitch(TextureStitchEvent event) { 
+    event.getMap().registerSprite(ParticleGlow.texture);
+         
+  }
+  @SideOnly(Side.CLIENT)
+  @SubscribeEvent(priority = EventPriority.HIGHEST)
+  public void onTick(TickEvent.ClientTickEvent event) {
+    if (event.side == Side.CLIENT && event.phase == TickEvent.Phase.START) {
+      ticks++;
+      ClientProxy.particleRenderer.updateParticles();
     }
-
- 
- 
-    @SideOnly(Side.CLIENT)
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public void onTick(TickEvent.ClientTickEvent event) {
-        if (event.side == Side.CLIENT && event.phase == TickEvent.Phase.START) {
-            ticks++;
-            ClientProxy.particleRenderer.updateParticles();
- 
-        }
+  }
+  @SubscribeEvent
+  @SideOnly(Side.CLIENT)
+  public void onRenderAfterWorld(RenderWorldLastEvent event) {
+    tickCounter++;
+    if (Embers.proxy instanceof ClientProxy) {
+      GlStateManager.pushMatrix();
+      ClientProxy.particleRenderer.renderParticles(clientPlayer, event.getPartialTicks());
+      GlStateManager.popMatrix();
     }
-
- 
-
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public void onRenderAfterWorld(RenderWorldLastEvent event) {
-        tickCounter++;
-        if (Embers.proxy instanceof ClientProxy) {
-            GlStateManager.pushMatrix();
-            ClientProxy.particleRenderer.renderParticles(clientPlayer, event.getPartialTicks());
-            GlStateManager.popMatrix();
-        }
- 
-    }
- 
+  }
 }

@@ -1,5 +1,4 @@
 package teamroots.embers;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -37,53 +36,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RegistryManager {
- 
-    public static DamageSource damage_ember;
-
-
-    public static int intColor(int r, int g, int b) {
-        return (r * 65536 + g * 256 + b);
-    } 
- 
- 
-    public static void registerAll() {
-
+  public static DamageSource damage_ember;
+  public static int intColor(int r, int g, int b) {
+    return (r * 65536 + g * 256 + b);
+  }
+  public static void registerAll() {
     //    CapabilityManager.INSTANCE.register(IEmberCapability.class, new EmberCapabilityStorage(), DefaultEmberCapability.class);
-
-        damage_ember = new DamageGolem();
-
- 
-  
-
-        int id = 0;
-
-        EntityRegistry.registerModEntity(new ResourceLocation(Embers.MODID + ":ember_projectile"), EntityEmberProjectile.class, "ember_projectile", id++, Embers.instance, 64, 1, true);
-        EntityRegistry.registerModEntity(new ResourceLocation(Embers.MODID + ":ancient_golem"), EntityAncientGolem.class, "ancient_golem", id++, Embers.instance, 64, 1, true);
-        EntityRegistry.registerEgg(new ResourceLocation(Embers.MODID + ":ancient_golem"), intColor(48, 38, 35), intColor(79, 66, 61));
-   
-        List<BiomeEntry> biomeEntries = new ArrayList<BiomeEntry>();
-        biomeEntries.addAll(BiomeManager.getBiomes(BiomeType.COOL));
-        biomeEntries.addAll(BiomeManager.getBiomes(BiomeType.DESERT));
-        biomeEntries.addAll(BiomeManager.getBiomes(BiomeType.ICY));
-        biomeEntries.addAll(BiomeManager.getBiomes(BiomeType.WARM));
-        List<Biome> biomes = new ArrayList<Biome>();
-        for (BiomeEntry b : biomeEntries) {
-            biomes.add(b.biome);
-        }
-        biomes.addAll(BiomeManager.oceanBiomes);
-
-        EntityRegistry.addSpawn(EntityAncientGolem.class, 25, 1, 1, EnumCreatureType.MONSTER, biomes.toArray(new Biome[biomes.size()]));
- 
- 
+    damage_ember = new DamageGolem();
+    int id = 0;
+    EntityRegistry.registerModEntity(new ResourceLocation(Embers.MODID, "ember_projectile"), EntityEmberProjectile.class, "ember_projectile", id++, Embers.instance, 64, 1, true);
+    EntityRegistry.registerModEntity(new ResourceLocation(Embers.MODID, "ancient_golem"), EntityAncientGolem.class, "ancient_golem", id++, Embers.instance, 64, 1, true);
+    EntityRegistry.registerEgg(new ResourceLocation(Embers.MODID, "ancient_golem"), intColor(48, 38, 35), intColor(79, 66, 61));
+    List<BiomeEntry> biomeEntries = new ArrayList<BiomeEntry>();
+    biomeEntries.addAll(BiomeManager.getBiomes(BiomeType.COOL));
+    biomeEntries.addAll(BiomeManager.getBiomes(BiomeType.DESERT));
+    biomeEntries.addAll(BiomeManager.getBiomes(BiomeType.ICY));
+    biomeEntries.addAll(BiomeManager.getBiomes(BiomeType.WARM));
+    List<Biome> biomes = new ArrayList<Biome>();
+    for (BiomeEntry b : biomeEntries) {
+      biomes.add(b.biome);
     }
- 
-
-    @SideOnly(Side.CLIENT)
-    public static void registerEntityRendering() { 
-
-        //RenderingRegistry.registerEntityRenderingHandler(EntityEmberPacket.class, new RenderEmberPacket(Minecraft.getMinecraft().getRenderManager()));
-        RenderingRegistry.registerEntityRenderingHandler(EntityEmberProjectile.class, new RenderEmberPacket(Minecraft.getMinecraft().getRenderManager()));
-        RenderingRegistry.registerEntityRenderingHandler(EntityAncientGolem.class, new RenderAncientGolem.Factory());
-      //  RenderingRegistry.registerEntityRenderingHandler(EntityEmberLight.class, new RenderEmberPacket(Minecraft.getMinecraft().getRenderManager()));
-    }
+    biomes.addAll(BiomeManager.oceanBiomes);
+    EntityRegistry.addSpawn(EntityAncientGolem.class, 25, 1, 1, EnumCreatureType.MONSTER, biomes.toArray(new Biome[biomes.size()]));
+  }
+  @SideOnly(Side.CLIENT)
+  public static void registerEntityRendering() {
+    //RenderingRegistry.registerEntityRenderingHandler(EntityEmberPacket.class, new RenderEmberPacket(Minecraft.getMinecraft().getRenderManager()));
+    RenderingRegistry.registerEntityRenderingHandler(EntityEmberProjectile.class, new RenderEmberPacket(Minecraft.getMinecraft().getRenderManager()));
+    RenderingRegistry.registerEntityRenderingHandler(EntityAncientGolem.class, new RenderAncientGolem.Factory());
+    //  RenderingRegistry.registerEntityRenderingHandler(EntityEmberLight.class, new RenderEmberPacket(Minecraft.getMinecraft().getRenderManager()));
+  }
 }

@@ -60,6 +60,6 @@ public class EntityAncientGolem extends EntityMob {
 
     @Override
     public ResourceLocation getLootTable() {
-        return new ResourceLocation(Embers.MODID + ":entity/ancient_golem");
+        return new ResourceLocation(Embers.MODID , "entity/ancient_golem");
     }
 }
