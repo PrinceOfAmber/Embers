@@ -10,7 +10,7 @@ import teamroots.embers.gui.GuiHandler;
 import teamroots.embers.network.PacketHandler; 
 import teamroots.embers.reflection.Fields; 
 import teamroots.embers.util.EmberGenUtil;
-import teamroots.embers.util.ItemModUtil;
+ 
 
 public class CommonProxy {
 
@@ -19,7 +19,7 @@ public class CommonProxy {
         PacketHandler.registerMessages();
         RegistryManager.registerAll();
         EmberGenUtil.init();
-        ItemModUtil.init();
+ 
  
     }
 

@@ -34,8 +34,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import teamroots.embers.damage.DamageEmber;
 import teamroots.embers.entity.*;
- 
-import teamroots.embers.util.EmbersFuelHandler;
+  
 import teamroots.embers.util.Misc; 
 
 import java.util.ArrayList;
@@ -134,13 +133,7 @@ public class RegistryManager {
 
         EntityRegistry.addSpawn(EntityAncientGolem.class, ConfigManager.ancientGolemSpawnWeight, 1, 1, EnumCreatureType.MONSTER, biomes.toArray(new Biome[biomes.size()]));
  
-   
-        //GameRegistry.register(biomeCave = new BiomeCave());
-
-        //dimensionCave = DimensionType.register("cave", "cave", 90, CaveProvider.class, false);
-        //BiomeManager.addBiome(BiomeType.DESERT, new BiomeEntry(biomeCave, 10000));
-
-        GameRegistry.registerFuelHandler(new EmbersFuelHandler());
+ 
     }
 
     public static void registerFluids() { 
