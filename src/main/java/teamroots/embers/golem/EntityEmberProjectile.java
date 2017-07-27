@@ -1,4 +1,4 @@
-package teamroots.embers.entity;
+package teamroots.embers.golem;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -14,9 +14,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import teamroots.embers.Embers;
-import teamroots.embers.RegistryManager; 
-import teamroots.embers.particle.ParticleGlow;
- 
+import teamroots.embers.RegistryManager;
 import teamroots.embers.proxy.ClientProxy;
 import teamroots.embers.proxy.CommonProxy;
 import java.util.ArrayList;

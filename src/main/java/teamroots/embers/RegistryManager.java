@@ -32,9 +32,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
-import teamroots.embers.entity.*;
-   
-
+import teamroots.embers.golem.*;
 import java.util.ArrayList;
 import java.util.List;
 

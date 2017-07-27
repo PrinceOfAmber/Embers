@@ -1,4 +1,4 @@
-package teamroots.embers.particle;
+package teamroots.embers.golem;
 import java.util.Random;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import teamroots.embers.particle.IEmberParticle;
 
 public class ParticleGlow extends Particle implements IEmberParticle {
   public float colorR = 0;

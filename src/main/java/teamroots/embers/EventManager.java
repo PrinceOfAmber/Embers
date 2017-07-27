@@ -76,26 +76,7 @@ public class EventManager {
         }
     }
 
-//    @SubscribeEvent
-//    @SideOnly(Side.CLIENT)
-//    public void onPlayerRender(RenderPlayerEvent.Pre event) {
-//        if (event.getEntityPlayer() != null) {
-//            if (Minecraft.getMinecraft().inGameHasFocus || event.getEntityPlayer().getUniqueID().compareTo(Minecraft.getMinecraft().player.getUniqueID()) != 0) {
-//                event.setCanceled(!allowPlayerRenderEvent);
-//            }
-//        }
-//    }
-//
-//    @SubscribeEvent(priority = EventPriority.LOW)
-//    public void onEntityDamaged(LivingHurtEvent event) {
-//        if (event.getSource().damageType == RegistryManager.damage_ember.damageType) {
-//            if (event.getEntityLiving().isPotionActive(Potion.getPotionFromResourceLocation("fire_resistance"))) {
-//                event.setAmount(event.getAmount() * 0.5f);
-//            }
-//        }
-//        
-//    } 
-// 
+ 
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)

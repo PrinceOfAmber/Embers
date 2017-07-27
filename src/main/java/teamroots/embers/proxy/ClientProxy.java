@@ -2,8 +2,8 @@ package teamroots.embers.proxy;
 
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import teamroots.embers.RegistryManager;
-import teamroots.embers.entity.ModelGolem;
-import teamroots.embers.entity.RenderAncientGolem;
+import teamroots.embers.golem.ModelGolem;
+import teamroots.embers.golem.RenderAncientGolem;
 import teamroots.embers.particle.ParticleRenderer;
 
 public class ClientProxy extends CommonProxy {

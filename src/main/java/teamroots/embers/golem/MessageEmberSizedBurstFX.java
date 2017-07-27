@@ -1,4 +1,4 @@
-package teamroots.embers.entity;
+package teamroots.embers.golem;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
@@ -9,7 +9,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import teamroots.embers.Embers;
-import teamroots.embers.particle.ParticleGlow; 
 import teamroots.embers.proxy.ClientProxy;
 import java.util.Random;
 

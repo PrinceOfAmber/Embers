@@ -1,4 +1,4 @@
-package teamroots.embers.entity;
+package teamroots.embers.golem;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;

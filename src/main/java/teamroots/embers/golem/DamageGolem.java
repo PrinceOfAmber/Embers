@@ -1,4 +1,4 @@
-package teamroots.embers.entity;
+package teamroots.embers.golem;
 
 import net.minecraft.util.DamageSource;
 

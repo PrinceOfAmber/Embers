@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import teamroots.embers.Embers;
 import teamroots.embers.RegistryManager;
-import teamroots.embers.entity.MessageEmberSizedBurstFX; 
+import teamroots.embers.golem.MessageEmberSizedBurstFX; 
  
 
 public class CommonProxy {
