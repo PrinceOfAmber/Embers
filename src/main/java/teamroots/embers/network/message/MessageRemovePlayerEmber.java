@@ -5,8 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import teamroots.embers.util.EmberInventoryUtil;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext; 
 
 import java.util.Random;
 import java.util.UUID;
@@ -45,8 +44,8 @@ public class MessageRemovePlayerEmber implements IMessage {
             World world = ctx.getServerHandler().player.world;
             EntityPlayer p = world.getPlayerEntityByUUID(message.id);
             if (p != null) {
-                EmberInventoryUtil.removeEmber(p, message.amount);
-            }
+               // EmberInventoryUtil.removeEmber(p, message.amount);
+            }//
             return null;
         }
     }
