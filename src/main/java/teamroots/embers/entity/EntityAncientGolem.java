@@ -33,6 +33,7 @@ public class EntityAncientGolem extends EntityMob {
         this.tasks.addTask(8, new EntityAILookIdle(this));
 
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPigZombie.class, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
     protected void applyEntityAttributes() {
