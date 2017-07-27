@@ -65,96 +65,7 @@ public class EventManager {
     }
 
  
-
-    @SideOnly(Side.CLIENT)
-    @SubscribeEvent
-    public void onGameOverlayRender(RenderGameOverlayEvent.Post e) {
-        if (e.getType() == ElementType.TEXT) {
-            EventManager.frameCounter++;
-            EventManager.frameTime = (System.nanoTime() - prevTime) / 1000000000.0f;
-            EventManager.prevTime = System.nanoTime();
-        }
-        EntityPlayer player = Minecraft.getMinecraft().player;
-        boolean showBar = false;
-
-        int w = e.getResolution().getScaledWidth();
-        int h = e.getResolution().getScaledHeight();
-
-        int x = w / 2;
-        int y = h / 2;
-//        if (player.getHeldItemMainhand() != ItemStack.EMPTY) {
-//            if (player.getHeldItemMainhand().getItem() instanceof ItemEmberGauge) {
-//                showBar = true;
-//            }
-//        }
-//        if (player.getHeldItemOffhand() != ItemStack.EMPTY) {
-//            if (player.getHeldItemOffhand().getItem() instanceof ItemEmberGauge) {
-//                showBar = true;
-//            }
-//        }
-
-        Tessellator tess = Tessellator.getInstance();
-        BufferBuilder b = tess.getBuffer();
-        if (showBar) {
-            World world = player.getEntityWorld();
-            if (e.getType() == ElementType.TEXT) {
-                GlStateManager.disableDepth();
-                GlStateManager.disableCull();
-                GlStateManager.pushMatrix();
-                Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("embers:textures/gui/ember_meter_overlay.png"));
-                GlStateManager.color(1f, 1f, 1f, 1f);
-
-                int offsetX = 0;
-
-                b.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-                RenderUtil.drawQuadGui(b, 0, x - 16, y - 4, x + 16, y - 4, x + 16, y - 36, x - 16, y - 36, 0, 0, 1, 1);
-                tess.draw();
-
-                double angle = 195.0;
-              //  EmberWorldData data = EmberWorldData.get(world);
-                if (player != null) {
-                    //if (data.emberData != null){
-                    //if (data.emberData.containsKey(""+((int)player.posX) / 16 + " " + ((int)player.posZ) / 16)){
-                   // double ratio = EmberGenUtil.getEmberDensity(world.getSeed(), player.getPosition().getX(), player.getPosition().getZ());
-                    if (gaugeAngle == 0) {
-                 //       gaugeAngle = 165.0 + 210.0 * ratio;
-                    } else {
-                   //     gaugeAngle = gaugeAngle * 0.99 + 0.01 * (165.0 + 210.0 * ratio);
-                    }
-                    //}
-                    //}
-                }
-
-                Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("embers:textures/gui/ember_meter_pointer.png"));
-                GlStateManager.translate(x, y - 20, 0);
-                GlStateManager.rotate((float) gaugeAngle, 0, 0, 1);
-                b.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-                RenderUtil.drawQuadGui(b, 0.0, -2.5f, 13.5f, 13.5f, 13.5f, 13.5f, -2.5f, -2.5f, -2.5f, 0, 0, 1, 1);
-                tess.draw();
-
-                GlStateManager.popMatrix();
-                GlStateManager.enableCull();
-                GlStateManager.enableDepth();
-            }
-        }
-        World world = player.getEntityWorld();
-        RayTraceResult result = player.rayTrace(6.0, e.getPartialTicks());
-
-//        if (result != null) {
-//            if (result.typeOfHit == RayTraceResult.Type.BLOCK) {
-//                IBlockState state = world.getBlockState(result.getBlockPos());
-//                if (state.getBlock() instanceof IDial) {
-//                    List<String> text = ((IDial) state.getBlock()).getDisplayInfo(world, result.getBlockPos(), state);
-//                    for (int i = 0; i < text.size(); i++) {
-//                        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(text.get(i), x - Minecraft.getMinecraft().fontRenderer.getStringWidth(text.get(i)) / 2, y + 40 + 11 * i, 0xFFFFFF);
-//                    }
-//                }
-//            }
-//        }
-        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("minecraft:textures/gui/icons.png"));
-        GlStateManager.enableDepth();
-    }
-
+ 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onTick(TickEvent.ClientTickEvent event) {
@@ -165,26 +76,26 @@ public class EventManager {
         }
     }
 
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public void onPlayerRender(RenderPlayerEvent.Pre event) {
-        if (event.getEntityPlayer() != null) {
-            if (Minecraft.getMinecraft().inGameHasFocus || event.getEntityPlayer().getUniqueID().compareTo(Minecraft.getMinecraft().player.getUniqueID()) != 0) {
-                event.setCanceled(!allowPlayerRenderEvent);
-            }
-        }
-    }
-
-    @SubscribeEvent(priority = EventPriority.LOW)
-    public void onEntityDamaged(LivingHurtEvent event) {
-        if (event.getSource().damageType == RegistryManager.damage_ember.damageType) {
-            if (event.getEntityLiving().isPotionActive(Potion.getPotionFromResourceLocation("fire_resistance"))) {
-                event.setAmount(event.getAmount() * 0.5f);
-            }
-        }
-        
-    } 
- 
+//    @SubscribeEvent
+//    @SideOnly(Side.CLIENT)
+//    public void onPlayerRender(RenderPlayerEvent.Pre event) {
+//        if (event.getEntityPlayer() != null) {
+//            if (Minecraft.getMinecraft().inGameHasFocus || event.getEntityPlayer().getUniqueID().compareTo(Minecraft.getMinecraft().player.getUniqueID()) != 0) {
+//                event.setCanceled(!allowPlayerRenderEvent);
+//            }
+//        }
+//    }
+//
+//    @SubscribeEvent(priority = EventPriority.LOW)
+//    public void onEntityDamaged(LivingHurtEvent event) {
+//        if (event.getSource().damageType == RegistryManager.damage_ember.damageType) {
+//            if (event.getEntityLiving().isPotionActive(Potion.getPotionFromResourceLocation("fire_resistance"))) {
+//                event.setAmount(event.getAmount() * 0.5f);
+//            }
+//        }
+//        
+//    } 
+// 
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)

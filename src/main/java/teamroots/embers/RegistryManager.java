@@ -44,16 +44,8 @@ public class RegistryManager {
  
     public static DamageSource damage_ember;
 
-    public static Material unpushable;
-
-    public static Biome biome_cave;
-
-    
-    public static IWorldGenerator world_gen_small_ruin;
  
  
- 
-
     public static void registerAll() {
 
     //    CapabilityManager.INSTANCE.register(IEmberCapability.class, new EmberCapabilityStorage(), DefaultEmberCapability.class);
@@ -65,12 +57,10 @@ public class RegistryManager {
 
         int id = 0;
 
-       // EntityRegistry.registerModEntity(new ResourceLocation(Embers.MODID + ":ember_packet"), EntityEmberPacket.class, "ember_packet", id++, Embers.instance, 64, 1, true);
         EntityRegistry.registerModEntity(new ResourceLocation(Embers.MODID + ":ember_projectile"), EntityEmberProjectile.class, "ember_projectile", id++, Embers.instance, 64, 1, true);
         EntityRegistry.registerModEntity(new ResourceLocation(Embers.MODID + ":ancient_golem"), EntityAncientGolem.class, "ancient_golem", id++, Embers.instance, 64, 1, true);
         EntityRegistry.registerEgg(new ResourceLocation(Embers.MODID + ":ancient_golem"), Misc.intColor(48, 38, 35), Misc.intColor(79, 66, 61));
-        //EntityRegistry.registerModEntity(new ResourceLocation(Embers.MODID + ":ember_light"), EntityEmberLight.class, "ember_light", id++, Embers.instance, 64, 1, true);
-
+   
         List<BiomeEntry> biomeEntries = new ArrayList<BiomeEntry>();
         biomeEntries.addAll(BiomeManager.getBiomes(BiomeType.COOL));
         biomeEntries.addAll(BiomeManager.getBiomes(BiomeType.DESERT));
