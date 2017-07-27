@@ -9,9 +9,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import teamroots.embers.network.PacketHandler;
 import teamroots.embers.network.message.MessageEmberSparkleFX;
-import teamroots.embers.particle.ParticleUtil;
-import teamroots.embers.power.EmberCapabilityProvider;
-import teamroots.embers.power.IEmberPacketReceiver;
+import teamroots.embers.particle.ParticleUtil; 
 import teamroots.embers.util.Misc;
 
 //import elucent.albedo.lighting.ILightProvider;
@@ -133,22 +131,22 @@ public class EntityEmberPacket extends Entity/* implements ILightProvider*/ {
     }
 
     public void affectTileEntity(IBlockState state, TileEntity tile) {
-        if (tile instanceof IEmberPacketReceiver) {
-            if (((IEmberPacketReceiver) tile).onReceive(this)) {
-                if (tile.hasCapability(EmberCapabilityProvider.emberCapability, null)) {
-                    if (!getEntityWorld().isRemote) {
-                        PacketHandler.INSTANCE.sendToAll(new MessageEmberSparkleFX(posX, posY, posZ));
-                    }
-                    tile.getCapability(EmberCapabilityProvider.emberCapability, null).addAmount(value, true);
-                    tile.markDirty();
-                    this.motionX = 0;
-                    this.motionY = 0;
-                    this.motionZ = 0;
-                    this.lifetime = 20;
-                    this.dead = true;
-                }
-            }
-        }
+//        if (tile instanceof IEmberPacketReceiver) {
+//            if (((IEmberPacketReceiver) tile).onReceive(this)) {
+//                if (tile.hasCapability(EmberCapabilityProvider.emberCapability, null)) {
+//                    if (!getEntityWorld().isRemote) {
+//                        PacketHandler.INSTANCE.sendToAll(new MessageEmberSparkleFX(posX, posY, posZ));
+//                    }
+//                    tile.getCapability(EmberCapabilityProvider.emberCapability, null).addAmount(value, true);
+//                    tile.markDirty();
+//                    this.motionX = 0;
+//                    this.motionY = 0;
+//                    this.motionZ = 0;
+//                    this.lifetime = 20;
+//                    this.dead = true;
+//                }
+//            }
+//        }
     }
 
 	/*@Method(modid = "albedo")

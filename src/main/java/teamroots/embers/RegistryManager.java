@@ -35,9 +35,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import teamroots.embers.damage.DamageEmber;
 import teamroots.embers.entity.*;
  
-import teamroots.embers.power.DefaultEmberCapability;
-import teamroots.embers.power.EmberCapabilityStorage;
-import teamroots.embers.power.IEmberCapability;
 import teamroots.embers.util.EmbersFuelHandler;
 import teamroots.embers.util.Misc; 
 
@@ -96,7 +93,7 @@ public class RegistryManager {
 
     public static void registerAll() {
 
-        CapabilityManager.INSTANCE.register(IEmberCapability.class, new EmberCapabilityStorage(), DefaultEmberCapability.class);
+    //    CapabilityManager.INSTANCE.register(IEmberCapability.class, new EmberCapabilityStorage(), DefaultEmberCapability.class);
 
         damage_ember = new DamageEmber();
 

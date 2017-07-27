@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import teamroots.embers.particle.ParticleUtil;
-import teamroots.embers.power.IEmberPacketReceiver; 
+ 
 
 public class MessageBeamCannonFX implements IMessage {
     public NBTTagCompound tag = new NBTTagCompound();
