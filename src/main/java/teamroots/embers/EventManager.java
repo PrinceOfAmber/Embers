@@ -43,8 +43,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 import teamroots.embers.network.PacketHandler;
 import teamroots.embers.network.message.MessageEmberBurstFX;
-import teamroots.embers.network.message.MessageEmberGenOffset;
-import teamroots.embers.network.message.MessageTEUpdate;
+import teamroots.embers.network.message.MessageEmberGenOffset; 
 import teamroots.embers.network.message.MessageTyrfingBurstFX;
 import teamroots.embers.proxy.ClientProxy;
 import teamroots.embers.util.*;
@@ -284,45 +283,45 @@ public class EventManager {
         event.getOriginalSpeed();
     }
 
-    @SubscribeEvent
-    public void onWorldTick(TickEvent.WorldTickEvent event) {
-        if (!event.world.isRemote && event.phase == TickEvent.Phase.END) {
-            NBTTagList list = new NBTTagList();
-            acceptUpdates = false;
-            TileEntity[] updateArray = toUpdate.values().toArray(new TileEntity[0]);
-            acceptUpdates = true;
-            for (Entry<BlockPos, TileEntity> e : overflow.entrySet()) {
-                toUpdate.put(e.getKey(), e.getValue());
-            }
-            overflow.clear();
-            for (int i = 0; i < updateArray.length; i++) {
-                TileEntity t = updateArray[i];
-                list.appendTag(t.getUpdateTag());
-            }
-            if (!list.hasNoTags()) {
-                NBTTagCompound tag = new NBTTagCompound();
-                tag.setTag("data", list);
-                PacketHandler.INSTANCE.sendToAll(new MessageTEUpdate(tag));
-            }
-            toUpdate.clear();
-        }
-    }
+//    @SubscribeEvent
+//    public void onWorldTick(TickEvent.WorldTickEvent event) {
+//        if (!event.world.isRemote && event.phase == TickEvent.Phase.END) {
+//            NBTTagList list = new NBTTagList();
+//            acceptUpdates = false;
+//            TileEntity[] updateArray = toUpdate.values().toArray(new TileEntity[0]);
+//            acceptUpdates = true;
+//            for (Entry<BlockPos, TileEntity> e : overflow.entrySet()) {
+//                toUpdate.put(e.getKey(), e.getValue());
+//            }
+//            overflow.clear();
+//            for (int i = 0; i < updateArray.length; i++) {
+//                TileEntity t = updateArray[i];
+//                list.appendTag(t.getUpdateTag());
+//            }
+////            if (!list.hasNoTags()) {
+////                NBTTagCompound tag = new NBTTagCompound();
+////                tag.setTag("data", list);
+////                PacketHandler.INSTANCE.sendToAll(new MessageTEUpdate(tag));
+////            }
+//            toUpdate.clear();
+//        }
+//    }
 
-    public static void markTEForUpdate(BlockPos pos, TileEntity tile) {
-        if (!tile.getWorld().isRemote && acceptUpdates) {
-            if (!toUpdate.containsKey(pos)) {
-                toUpdate.put(pos, tile);
-            } else {
-                toUpdate.replace(pos, tile);
-            }
-        } else if (!tile.getWorld().isRemote) {
-            if (!overflow.containsKey(pos)) {
-                overflow.put(pos, tile);
-            } else {
-                overflow.replace(pos, tile);
-            }
-        }
-    }
+//    public static void markTEForUpdate(BlockPos pos, TileEntity tile) {
+//        if (!tile.getWorld().isRemote && acceptUpdates) {
+//            if (!toUpdate.containsKey(pos)) {
+//                toUpdate.put(pos, tile);
+//            } else {
+//                toUpdate.replace(pos, tile);
+//            }
+//        } else if (!tile.getWorld().isRemote) {
+//            if (!overflow.containsKey(pos)) {
+//                overflow.put(pos, tile);
+//            } else {
+//                overflow.replace(pos, tile);
+//            }
+//        }
+//    }
 
     @SideOnly(Side.CLIENT)
     public static void drawScaledCustomSizeModalRect(double x, double y, float u, float v, float uWidth, float vHeight, double width, double height, float tileWidth, float tileHeight) {
