@@ -8,14 +8,14 @@ import teamroots.embers.Embers;
 import teamroots.embers.RegistryManager;
 
 import teamroots.embers.network.PacketHandler; 
-import teamroots.embers.reflection.Fields; 
+  
 import teamroots.embers.util.EmberGenUtil;
  
 
 public class CommonProxy {
 
     public void preInit(FMLPreInitializationEvent event) {
-        Fields.init();
+ //       Fields.init();
         PacketHandler.registerMessages();
         RegistryManager.registerAll();
         EmberGenUtil.init();
