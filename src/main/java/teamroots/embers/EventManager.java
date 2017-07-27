@@ -48,8 +48,6 @@ import teamroots.embers.network.message.MessageTEUpdate;
 import teamroots.embers.network.message.MessageTyrfingBurstFX;
 import teamroots.embers.proxy.ClientProxy;
 import teamroots.embers.util.*;
-import teamroots.embers.world.EmberWorldData;
-
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -89,14 +87,14 @@ public class EventManager {
     @SubscribeEvent
     public void onServerTick(WorldTickEvent event) {
         if (event.world.provider.getDimensionType() == DimensionType.OVERWORLD) {
-            if (Misc.random.nextInt(400) == 0) {
-                EmberGenUtil.offX++;
-                EmberWorldData.get(event.world).markDirty();
-            }
-            if (Misc.random.nextInt(400) == 0) {
-                EmberGenUtil.offZ++;
-                EmberWorldData.get(event.world).markDirty();
-            }
+//            if (Misc.random.nextInt(400) == 0) {
+//                EmberGenUtil.offX++;
+//                EmberWorldData.get(event.world).markDirty();
+//            }
+//            if (Misc.random.nextInt(400) == 0) {
+//                EmberGenUtil.offZ++;
+//                EmberWorldData.get(event.world).markDirty();
+//            }
             PacketHandler.INSTANCE.sendToAll(new MessageEmberGenOffset(EmberGenUtil.offX, EmberGenUtil.offZ));
         }
     }
@@ -147,7 +145,7 @@ public class EventManager {
                 tess.draw();
 
                 double angle = 195.0;
-                EmberWorldData data = EmberWorldData.get(world);
+              //  EmberWorldData data = EmberWorldData.get(world);
                 if (player != null) {
                     //if (data.emberData != null){
                     //if (data.emberData.containsKey(""+((int)player.posX) / 16 + " " + ((int)player.posZ) / 16)){
