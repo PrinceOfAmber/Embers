@@ -41,17 +41,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RegistryManager {
-    public static ArrayList<Block> blocks = new ArrayList<Block>();
-    public static ArrayList<Item> items = new ArrayList<Item>();
-
-    public static ToolMaterial tool_mat_tyrfing, tool_mat_copper, tool_mat_silver, tool_mat_lead, tool_mat_dawnstone;
-    public static ToolMaterial tool_mat_aluminum, tool_mat_bronze, tool_mat_tin, tool_mat_electrum, tool_mat_nickel;
-    public static ArmorMaterial armor_mat_ashen_cloak;
- 
-
-    public static Fluid fluid_molten_dawnstone, fluid_molten_gold, fluid_molten_copper, fluid_molten_lead, fluid_molten_silver, fluid_molten_iron,
-            fluid_molten_aluminum, fluid_molten_tin, fluid_molten_bronze, fluid_molten_electrum, fluid_molten_nickel;
-
  
     public static DamageSource damage_ember;
 
@@ -59,36 +48,11 @@ public class RegistryManager {
 
     public static Biome biome_cave;
 
-    public static DimensionType dimension_cave;
- 
+    
     public static IWorldGenerator world_gen_small_ruin;
-
-    @SubscribeEvent
-    public void registerBlocks(RegistryEvent.Register<Block> event) {
-        for (Block b : blocks) {
-            event.getRegistry().register(b);
-        }
-    }
-
-    @SubscribeEvent
-    public void registerItems(RegistryEvent.Register<Item> event) {
-        for (Item i : items) {
-            event.getRegistry().register(i);
-        }
-  
-    }
-
-    @SideOnly(Side.CLIENT)
-    @SubscribeEvent
-    public void registerRendering(ModelRegistryEvent event) {
-
  
-//        for (int i = 0; i < items.size(); i++) {
-//            if (items.get(i) instanceof IModeledItem) {
-//                ((IModeledItem) items.get(i)).initModel();
-//            }
-//        }
-    }
+ 
+ 
 
     public static void registerAll() {
 
@@ -96,20 +60,7 @@ public class RegistryManager {
 
         damage_ember = new DamageEmber();
 
-        tool_mat_copper = EnumHelper.addToolMaterial(Embers.MODID + ":copper", 2, 181, 5.4f, 1.5f, 16);
-        tool_mat_silver = EnumHelper.addToolMaterial(Embers.MODID + ":silver", 2, 202, 7.6f, 2.0f, 20);
-        tool_mat_lead = EnumHelper.addToolMaterial(Embers.MODID + ":lead", 2, 168, 6.0f, 2.0f, 4);
-        tool_mat_dawnstone = EnumHelper.addToolMaterial(Embers.MODID + ":dawnstone", 2, 644, 7.5f, 2.5f, 18);
-        tool_mat_tyrfing = EnumHelper.addToolMaterial(Embers.MODID + ":tyrfing", 2, 512, 7.5f, 0.0f, 24);
-
-        armor_mat_ashen_cloak = EnumHelper.addArmorMaterial(Embers.MODID + ":ashen_cloak", Embers.MODID + ":ashen_cloak", 19, new int[]{3, 5, 7, 3}, 18, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0);
-    
-
-		/*
-		items.add(ingotAstralite = new ItemBase("ingotAstralite",true));
-		items.add(ingotUmberSteel = new ItemBase("ingotUmberSteel",true));*/
-
-        registerFluids();
+ 
   
 
         int id = 0;
@@ -135,17 +86,7 @@ public class RegistryManager {
  
  
     }
-
-    public static void registerFluids() { 
-    }
-
-    @SideOnly(Side.CLIENT)
-    public static void registerColorHandlers() {
-    //    Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ItemEmberJar.ColorHandler(), ember_jar);
-       // Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ItemEmberCartridge.ColorHandler(), ember_cartridge);
-       // Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ItemTyrfing.ColorHandler(), tyrfing);
-        //Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ItemEmberBulb.ColorHandler(), mantle_bulb);
-    }
+ 
 
     @SideOnly(Side.CLIENT)
     public static void registerEntityRendering() { 

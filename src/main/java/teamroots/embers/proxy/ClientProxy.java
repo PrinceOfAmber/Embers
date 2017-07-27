@@ -19,14 +19,6 @@ public class ClientProxy extends CommonProxy {
         RegistryManager.registerEntityRendering();
     }
 
-    @Override
-    public void init(FMLInitializationEvent event) {
-        super.init(event);
-        RegistryManager.registerColorHandlers();
-    }
-
-    @Override
-    public void postInit(FMLPostInitializationEvent event) {
-        super.postInit(event);
-    }
+ 
+ 
 }
