@@ -1,4 +1,4 @@
-package teamroots.embers.model;
+package teamroots.embers.entity;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

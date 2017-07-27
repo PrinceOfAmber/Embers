@@ -6,7 +6,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import teamroots.embers.Embers;
 import teamroots.embers.RegistryManager;
-import teamroots.embers.gui.GuiHandler;
+
 import teamroots.embers.network.PacketHandler; 
 import teamroots.embers.reflection.Fields; 
 import teamroots.embers.util.EmberGenUtil;
@@ -28,6 +28,6 @@ public class CommonProxy {
     }
 
     public void postInit(FMLPostInitializationEvent event) {
-        NetworkRegistry.INSTANCE.registerGuiHandler(Embers.instance, new GuiHandler());
+      
     }
 }
