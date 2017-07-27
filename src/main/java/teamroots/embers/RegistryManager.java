@@ -44,6 +44,10 @@ public class RegistryManager {
  
     public static DamageSource damage_ember;
 
+
+    public static int intColor(int r, int g, int b) {
+        return (r * 65536 + g * 256 + b);
+    } 
  
  
     public static void registerAll() {
@@ -59,7 +63,7 @@ public class RegistryManager {
 
         EntityRegistry.registerModEntity(new ResourceLocation(Embers.MODID + ":ember_projectile"), EntityEmberProjectile.class, "ember_projectile", id++, Embers.instance, 64, 1, true);
         EntityRegistry.registerModEntity(new ResourceLocation(Embers.MODID + ":ancient_golem"), EntityAncientGolem.class, "ancient_golem", id++, Embers.instance, 64, 1, true);
-        EntityRegistry.registerEgg(new ResourceLocation(Embers.MODID + ":ancient_golem"), Misc.intColor(48, 38, 35), Misc.intColor(79, 66, 61));
+        EntityRegistry.registerEgg(new ResourceLocation(Embers.MODID + ":ancient_golem"), intColor(48, 38, 35), intColor(79, 66, 61));
    
         List<BiomeEntry> biomeEntries = new ArrayList<BiomeEntry>();
         biomeEntries.addAll(BiomeManager.getBiomes(BiomeType.COOL));

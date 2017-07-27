@@ -1,5 +1,6 @@
 package teamroots.embers.particle;
 
+import java.util.Random;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -64,10 +65,11 @@ public class ParticleGlow extends Particle implements IEmberParticle {
         return 1;
     }
 
+    public static Random random = new Random();
     @Override
     public void onUpdate() {
         super.onUpdate();
-        if (Misc.random.nextInt(6) == 0) {
+        if (random.nextInt(6) == 0) {
             this.particleAge++;
         }
         float lifeCoeff = (float) this.particleAge / (float) this.particleMaxAge;
