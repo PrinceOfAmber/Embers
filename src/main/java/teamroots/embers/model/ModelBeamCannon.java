@@ -4,8 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.math.Vec3d;
-import teamroots.embers.tileentity.TileEntityBeamCannon;
+import net.minecraft.util.math.Vec3d; 
 import teamroots.embers.util.Misc;
 
 public class ModelBeamCannon extends ModelBase {//fields
@@ -51,31 +50,31 @@ public class ModelBeamCannon extends ModelBase {//fields
         setRotation(disc4, 0F, 0F, 0F);
     }
 
-    public void render(TileEntityBeamCannon tile, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-        GlStateManager.pushMatrix();
-        float yaw = 0;
-        float pitch = 0;
-        if (tile.target != null) {
-            yaw = Misc.yawDegreesBetweenPoints(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), tile.target.getX(), tile.target.getY(), tile.target.getZ());
-            pitch = Misc.pitchDegreesBetweenPoints(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), tile.target.getX(), tile.target.getY(), tile.target.getZ());
-            base.rotateAngleY = (float) Math.toRadians(yaw);
-            base.rotateAngleX = (float) Math.toRadians(pitch);
-            disc1.rotateAngleY = (float) Math.toRadians(yaw);
-            disc1.rotateAngleX = (float) Math.toRadians(pitch);
-            disc2.rotateAngleY = (float) Math.toRadians(yaw);
-            disc2.rotateAngleX = (float) Math.toRadians(pitch);
-            disc3.rotateAngleY = (float) Math.toRadians(yaw);
-            disc3.rotateAngleX = (float) Math.toRadians(pitch);
-            disc4.rotateAngleY = (float) Math.toRadians(yaw);
-            disc4.rotateAngleX = (float) Math.toRadians(pitch);
-        }
-        base.render(scale);
-        disc1.render(scale);
-        disc2.render(scale);
-        disc3.render(scale);
-        disc4.render(scale);
-        GlStateManager.popMatrix();
-    }
+//    public void render(TileEntityBeamCannon tile, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+//        GlStateManager.pushMatrix();
+//        float yaw = 0;
+//        float pitch = 0;
+//        if (tile.target != null) {
+//            yaw = Misc.yawDegreesBetweenPoints(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), tile.target.getX(), tile.target.getY(), tile.target.getZ());
+//            pitch = Misc.pitchDegreesBetweenPoints(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), tile.target.getX(), tile.target.getY(), tile.target.getZ());
+//            base.rotateAngleY = (float) Math.toRadians(yaw);
+//            base.rotateAngleX = (float) Math.toRadians(pitch);
+//            disc1.rotateAngleY = (float) Math.toRadians(yaw);
+//            disc1.rotateAngleX = (float) Math.toRadians(pitch);
+//            disc2.rotateAngleY = (float) Math.toRadians(yaw);
+//            disc2.rotateAngleX = (float) Math.toRadians(pitch);
+//            disc3.rotateAngleY = (float) Math.toRadians(yaw);
+//            disc3.rotateAngleX = (float) Math.toRadians(pitch);
+//            disc4.rotateAngleY = (float) Math.toRadians(yaw);
+//            disc4.rotateAngleX = (float) Math.toRadians(pitch);
+//        }
+//        base.render(scale);
+//        disc1.render(scale);
+//        disc2.render(scale);
+//        disc3.render(scale);
+//        disc4.render(scale);
+//        GlStateManager.popMatrix();
+//    }
 
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
         GlStateManager.pushMatrix();

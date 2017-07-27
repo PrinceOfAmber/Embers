@@ -41,20 +41,12 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
-import teamroots.embers.block.IDial;
-import teamroots.embers.gui.GuiCodex;
-import teamroots.embers.item.IEmberChargedTool;
-import teamroots.embers.item.ItemAshenCloak;
-import teamroots.embers.item.ItemEmberGauge;
-import teamroots.embers.item.ItemGrandhammer;
 import teamroots.embers.network.PacketHandler;
 import teamroots.embers.network.message.MessageEmberBurstFX;
 import teamroots.embers.network.message.MessageEmberGenOffset;
 import teamroots.embers.network.message.MessageTEUpdate;
 import teamroots.embers.network.message.MessageTyrfingBurstFX;
 import teamroots.embers.proxy.ClientProxy;
-import teamroots.embers.research.ResearchBase;
-import teamroots.embers.tileentity.ITileEntitySpecialRendererLater;
 import teamroots.embers.util.*;
 import teamroots.embers.world.EmberWorldData;
 
@@ -63,8 +55,7 @@ import java.util.Map.Entry;
 
 public class EventManager {
     public static boolean hasRenderedParticles = false;
-    public static float emberEyeView = 0;
-    public static ResearchBase lastResearch = null;
+    public static float emberEyeView = 0; 
     public static float frameTime = 0;
     public static float frameCounter = 0;
     public static long prevTime = 0;
@@ -121,35 +112,35 @@ public class EventManager {
         if (event.getEntity() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getEntity();
             String source = event.getSource().getDamageType();
-            if (source.compareTo("mob") != 0 && source.compareTo("generic") != 0 && source.compareTo("player") != 0 && source.compareTo("arrow") != 0) {
-                if (player.getHeldItemMainhand() != ItemStack.EMPTY) {
-                    if (player.getHeldItemMainhand().getItem() == RegistryManager.inflictor_gem && player.getHeldItemMainhand().hasTagCompound()) {
-                        player.getHeldItemMainhand().setItemDamage(1);
-                        player.getHeldItemMainhand().getTagCompound().setString("type", event.getSource().getDamageType());
-                    }
-                }
-                if (player.getHeldItemOffhand() != ItemStack.EMPTY) {
-                    if (player.getHeldItemOffhand().getItem() == RegistryManager.inflictor_gem && player.getHeldItemOffhand().hasTagCompound()) {
-                        player.getHeldItemOffhand().setItemDamage(1);
-                        player.getHeldItemOffhand().getTagCompound().setString("type", event.getSource().getDamageType());
-                    }
-                }
-            }
+//            if (source.compareTo("mob") != 0 && source.compareTo("generic") != 0 && source.compareTo("player") != 0 && source.compareTo("arrow") != 0) {
+//                if (player.getHeldItemMainhand() != ItemStack.EMPTY) {
+//                    if (player.getHeldItemMainhand().getItem() == RegistryManager.inflictor_gem && player.getHeldItemMainhand().hasTagCompound()) {
+//                        player.getHeldItemMainhand().setItemDamage(1);
+//                        player.getHeldItemMainhand().getTagCompound().setString("type", event.getSource().getDamageType());
+//                    }
+//                }
+//                if (player.getHeldItemOffhand() != ItemStack.EMPTY) {
+//                    if (player.getHeldItemOffhand().getItem() == RegistryManager.inflictor_gem && player.getHeldItemOffhand().hasTagCompound()) {
+//                        player.getHeldItemOffhand().setItemDamage(1);
+//                        player.getHeldItemOffhand().getTagCompound().setString("type", event.getSource().getDamageType());
+//                    }
+//                }
+//            }
         }
         if (event.getEntityLiving().getItemStackFromSlot(EntityEquipmentSlot.HEAD) != ItemStack.EMPTY &&
                 event.getEntityLiving().getItemStackFromSlot(EntityEquipmentSlot.CHEST) != ItemStack.EMPTY &&
                 event.getEntityLiving().getItemStackFromSlot(EntityEquipmentSlot.LEGS) != ItemStack.EMPTY &&
                 event.getEntityLiving().getItemStackFromSlot(EntityEquipmentSlot.FEET) != ItemStack.EMPTY) {
-            if (event.getEntityLiving().getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() instanceof ItemAshenCloak &&
-                    event.getEntityLiving().getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof ItemAshenCloak &&
-                    event.getEntityLiving().getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() instanceof ItemAshenCloak &&
-                    event.getEntityLiving().getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof ItemAshenCloak) {
-                float mult = Math.max(0, 1.0f - ItemAshenCloak.getDamageMultiplier(event.getSource(), event.getEntityLiving().getItemStackFromSlot(EntityEquipmentSlot.CHEST)));
-                if (mult == 0) {
-                    event.setCanceled(true);
-                }
-                event.setAmount(event.getAmount() * mult);
-            }
+//            if (event.getEntityLiving().getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() instanceof ItemAshenCloak &&
+//                    event.getEntityLiving().getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() instanceof ItemAshenCloak &&
+//                    event.getEntityLiving().getItemStackFromSlot(EntityEquipmentSlot.LEGS).getItem() instanceof ItemAshenCloak &&
+//                    event.getEntityLiving().getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() instanceof ItemAshenCloak) {
+//                float mult = Math.max(0, 1.0f - ItemAshenCloak.getDamageMultiplier(event.getSource(), event.getEntityLiving().getItemStackFromSlot(EntityEquipmentSlot.CHEST)));
+//                if (mult == 0) {
+//                    event.setCanceled(true);
+//                }
+//                event.setAmount(event.getAmount() * mult);
+//            }
         }
         for (ItemStack s : event.getEntityLiving().getEquipmentAndArmor()) {
             if (s.getItem() instanceof ItemArmor) {
@@ -185,16 +176,16 @@ public class EventManager {
 
         int x = w / 2;
         int y = h / 2;
-        if (player.getHeldItemMainhand() != ItemStack.EMPTY) {
-            if (player.getHeldItemMainhand().getItem() instanceof ItemEmberGauge) {
-                showBar = true;
-            }
-        }
-        if (player.getHeldItemOffhand() != ItemStack.EMPTY) {
-            if (player.getHeldItemOffhand().getItem() instanceof ItemEmberGauge) {
-                showBar = true;
-            }
-        }
+//        if (player.getHeldItemMainhand() != ItemStack.EMPTY) {
+//            if (player.getHeldItemMainhand().getItem() instanceof ItemEmberGauge) {
+//                showBar = true;
+//            }
+//        }
+//        if (player.getHeldItemOffhand() != ItemStack.EMPTY) {
+//            if (player.getHeldItemOffhand().getItem() instanceof ItemEmberGauge) {
+//                showBar = true;
+//            }
+//        }
 
         Tessellator tess = Tessellator.getInstance();
         BufferBuilder b = tess.getBuffer();
@@ -243,17 +234,17 @@ public class EventManager {
         World world = player.getEntityWorld();
         RayTraceResult result = player.rayTrace(6.0, e.getPartialTicks());
 
-        if (result != null) {
-            if (result.typeOfHit == RayTraceResult.Type.BLOCK) {
-                IBlockState state = world.getBlockState(result.getBlockPos());
-                if (state.getBlock() instanceof IDial) {
-                    List<String> text = ((IDial) state.getBlock()).getDisplayInfo(world, result.getBlockPos(), state);
-                    for (int i = 0; i < text.size(); i++) {
-                        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(text.get(i), x - Minecraft.getMinecraft().fontRenderer.getStringWidth(text.get(i)) / 2, y + 40 + 11 * i, 0xFFFFFF);
-                    }
-                }
-            }
-        }
+//        if (result != null) {
+//            if (result.typeOfHit == RayTraceResult.Type.BLOCK) {
+//                IBlockState state = world.getBlockState(result.getBlockPos());
+//                if (state.getBlock() instanceof IDial) {
+//                    List<String> text = ((IDial) state.getBlock()).getDisplayInfo(world, result.getBlockPos(), state);
+//                    for (int i = 0; i < text.size(); i++) {
+//                        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(text.get(i), x - Minecraft.getMinecraft().fontRenderer.getStringWidth(text.get(i)) / 2, y + 40 + 11 * i, 0xFFFFFF);
+//                    }
+//                }
+//            }
+//        }
         Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("minecraft:textures/gui/icons.png"));
         GlStateManager.enableDepth();
     }
@@ -265,19 +256,19 @@ public class EventManager {
             ticks++;
             ClientProxy.particleRenderer.updateParticles();
 
-            EntityPlayer player = Minecraft.getMinecraft().player;
-            if (player != null) {
-                World world = player.getEntityWorld();
-                RayTraceResult result = player.rayTrace(6.0, Minecraft.getMinecraft().getRenderPartialTicks());
-                if (result != null) {
-                    if (result.typeOfHit == RayTraceResult.Type.BLOCK) {
-                        IBlockState state = world.getBlockState(result.getBlockPos());
-                        if (state.getBlock() instanceof IDial) {
-                            ((IDial) state.getBlock()).updateTEData(world, state, result.getBlockPos());
-                        }
-                    }
-                }
-            }
+//            EntityPlayer player = Minecraft.getMinecraft().player;
+//            if (player != null) {
+//                World world = player.getEntityWorld();
+//                RayTraceResult result = player.rayTrace(6.0, Minecraft.getMinecraft().getRenderPartialTicks());
+//                if (result != null) {
+//                    if (result.typeOfHit == RayTraceResult.Type.BLOCK) {
+//                        IBlockState state = world.getBlockState(result.getBlockPos());
+//                        if (state.getBlock() instanceof IDial) {
+//                            ((IDial) state.getBlock()).updateTEData(world, state, result.getBlockPos());
+//                        }
+//                    }
+//                }
+//            }
         }
     }
 
@@ -300,26 +291,26 @@ public class EventManager {
         }
         if (event.getSource().getTrueSource() != null) {
             if (event.getSource().getTrueSource() instanceof EntityPlayer) {
-                if (((EntityPlayer) event.getSource().getTrueSource()).getHeldItemMainhand().getItem() == RegistryManager.tyrfing) {
-                    if (!event.getEntity().world.isRemote) {
-                        PacketHandler.INSTANCE.sendToAll(new MessageTyrfingBurstFX(event.getEntity().posX, event.getEntity().posY + event.getEntity().height / 2.0f, event.getEntity().posZ));
-                    }
-                    EntityPlayer p = ((EntityPlayer) event.getSource().getTrueSource());
-                    event.setAmount((event.getAmount() / 4.0f) * (4.0f + (float) event.getEntityLiving().getEntityAttribute(SharedMonsterAttributes.ARMOR).getAttributeValue() * 1.0f));
-                }
-                if (((EntityPlayer) event.getSource().getTrueSource()).getHeldItemMainhand() != ItemStack.EMPTY) {
-                    if (((EntityPlayer) event.getSource().getTrueSource()).getHeldItemMainhand().getItem() instanceof IEmberChargedTool) {
-                        if (((IEmberChargedTool) ((EntityPlayer) event.getSource().getTrueSource()).getHeldItemMainhand().getItem()).hasEmber(((EntityPlayer) event.getSource().getTrueSource()).getHeldItemMainhand()) || ((EntityPlayer) event.getSource().getTrueSource()).capabilities.isCreativeMode) {
-                            event.getEntityLiving().setFire(1);
-                            if (!event.getEntityLiving().getEntityWorld().isRemote) {
-                                PacketHandler.INSTANCE.sendToAll(new MessageEmberBurstFX(event.getEntityLiving().posX, event.getEntityLiving().posY + event.getEntityLiving().getEyeHeight() / 1.5, event.getEntityLiving().posZ));
-                                ((EntityPlayer) event.getSource().getTrueSource()).getHeldItemMainhand().getTagCompound().setBoolean("didUse", true);
-                            }
-                        } else {
-                            event.setCanceled(true);
-                        }
-                    }
-                }
+//                if (((EntityPlayer) event.getSource().getTrueSource()).getHeldItemMainhand().getItem() == RegistryManager.tyrfing) {
+//                    if (!event.getEntity().world.isRemote) {
+//                        PacketHandler.INSTANCE.sendToAll(new MessageTyrfingBurstFX(event.getEntity().posX, event.getEntity().posY + event.getEntity().height / 2.0f, event.getEntity().posZ));
+//                    }
+//                    EntityPlayer p = ((EntityPlayer) event.getSource().getTrueSource());
+//                    event.setAmount((event.getAmount() / 4.0f) * (4.0f + (float) event.getEntityLiving().getEntityAttribute(SharedMonsterAttributes.ARMOR).getAttributeValue() * 1.0f));
+//                }
+//                if (((EntityPlayer) event.getSource().getTrueSource()).getHeldItemMainhand() != ItemStack.EMPTY) {
+//                    if (((EntityPlayer) event.getSource().getTrueSource()).getHeldItemMainhand().getItem() instanceof IEmberChargedTool) {
+//                        if (((IEmberChargedTool) ((EntityPlayer) event.getSource().getTrueSource()).getHeldItemMainhand().getItem()).hasEmber(((EntityPlayer) event.getSource().getTrueSource()).getHeldItemMainhand()) || ((EntityPlayer) event.getSource().getTrueSource()).capabilities.isCreativeMode) {
+//                            event.getEntityLiving().setFire(1);
+//                            if (!event.getEntityLiving().getEntityWorld().isRemote) {
+//                                PacketHandler.INSTANCE.sendToAll(new MessageEmberBurstFX(event.getEntityLiving().posX, event.getEntityLiving().posY + event.getEntityLiving().getEyeHeight() / 1.5, event.getEntityLiving().posZ));
+//                                ((EntityPlayer) event.getSource().getTrueSource()).getHeldItemMainhand().getTagCompound().setBoolean("didUse", true);
+//                            }
+//                        } else {
+//                            event.setCanceled(true);
+//                        }
+//                    }
+//                }
             }
         }
     }
@@ -336,11 +327,7 @@ public class EventManager {
                 }
                 /*if (event.getPlayer().getHeldItemMainhand().getItem() instanceof IEmberChargedTool){
 					PacketHandler.INSTANCE.sendToAll(new MessageEmberBurstFX(event.getPos().getX()+0.5,event.getPos().getY()+0.5,event.getPos().getZ()+0.5));
-				}*/
-                if (event.getPlayer().getHeldItemMainhand().getItem() instanceof ItemGrandhammer) {
-                    event.setCanceled(true);
-                    event.getWorld().setBlockToAir(event.getPos());
-                }
+				}*/ 
             }
         }
     }
@@ -377,11 +364,11 @@ public class EventManager {
                     if (event.getLines().get(i).compareTo(TextFormatting.GRAY + "" + TextFormatting.GRAY + I18n.format("embers.tooltip.modifiers")) == 0) {
                         List<String> modifiers = new ArrayList<String>();
                         NBTTagList l = event.getStack().getTagCompound().getCompoundTag(ItemModUtil.HEAT_TAG).getTagList("modifiers", Constants.NBT.TAG_COMPOUND);
-                        for (int j = 0; j < l.tagCount(); j++) {
-                            if (l.getCompoundTagAt(j).getString("name").compareTo(ItemModUtil.modifierRegistry.get(RegistryManager.ancient_motive_core).name) != 0) {
-                                modifiers.add(l.getCompoundTagAt(j).getString("name"));
-                            }
-                        }
+//                        for (int j = 0; j < l.tagCount(); j++) {
+//                            if (l.getCompoundTagAt(j).getString("name").compareTo(ItemModUtil.modifierRegistry.get(RegistryManager.ancient_motive_core).name) != 0) {
+//                                modifiers.add(l.getCompoundTagAt(j).getString("name"));
+//                            }
+//                        }
                         GlStateManager.disableDepth();
                         GlStateManager.blendFunc(SourceFactor.SRC_ALPHA, DestFactor.ONE);
                         if (ItemModUtil.getLevel(event.getStack()) > 0) {
@@ -390,9 +377,9 @@ public class EventManager {
                             int func = GL11.glGetInteger(GL11.GL_ALPHA_TEST_FUNC);
                             float ref = GL11.glGetFloat(GL11.GL_ALPHA_TEST_REF);
                             GlStateManager.alphaFunc(GL11.GL_ALWAYS, 0);
-                            for (int j = 0; j < modifiers.size(); j++) {
-                                GuiCodex.drawTextGlowingAura(event.getFontRenderer(), I18n.format("embers.tooltip.modifier." + modifiers.get(j)) + " " + I18n.format("embers.tooltip.num" + ItemModUtil.getModifierLevel(event.getStack(), modifiers.get(j))), event.getX(), event.getY() + (event.getFontRenderer().FONT_HEIGHT + 1) * (i + j + 1) + 2);
-                            }
+//                            for (int j = 0; j < modifiers.size(); j++) {
+//                                GuiCodex.drawTextGlowingAura(event.getFontRenderer(), I18n.format("embers.tooltip.modifier." + modifiers.get(j)) + " " + I18n.format("embers.tooltip.num" + ItemModUtil.getModifierLevel(event.getStack(), modifiers.get(j))), event.getX(), event.getY() + (event.getFontRenderer().FONT_HEIGHT + 1) * (i + j + 1) + 2);
+//                            }
                             GlStateManager.alphaFunc(func, ref);
                             GlStateManager.disableAlpha();
                             GlStateManager.disableBlend();
@@ -409,7 +396,7 @@ public class EventManager {
                             int func = GL11.glGetInteger(GL11.GL_ALPHA_TEST_FUNC);
                             float ref = GL11.glGetFloat(GL11.GL_ALPHA_TEST_REF);
                             GlStateManager.alphaFunc(GL11.GL_ALWAYS, 0);
-                            GuiCodex.drawTextGlowingAura(event.getFontRenderer(), "" + ItemModUtil.getLevel(event.getStack()), event.getX() + level_x, event.getY() + (event.getFontRenderer().FONT_HEIGHT + 1) * (i - 1) + 2);
+                         //   GuiCodex.drawTextGlowingAura(event.getFontRenderer(), "" + ItemModUtil.getLevel(event.getStack()), event.getX() + level_x, event.getY() + (event.getFontRenderer().FONT_HEIGHT + 1) * (i - 1) + 2);
                             GlStateManager.alphaFunc(func, ref);
                             GlStateManager.disableAlpha();
                             GlStateManager.disableBlend();
@@ -507,12 +494,12 @@ public class EventManager {
         GlStateManager.pushMatrix();
         for (int i = 0; i < list.size(); i++) {
             TileEntitySpecialRenderer render = TileEntityRendererDispatcher.instance.getRenderer(list.get(i));
-            if (render instanceof ITileEntitySpecialRendererLater) {
-                double x = Minecraft.getMinecraft().player.lastTickPosX + Minecraft.getMinecraft().getRenderPartialTicks() * (Minecraft.getMinecraft().player.posX - Minecraft.getMinecraft().player.lastTickPosX);
-                double y = Minecraft.getMinecraft().player.lastTickPosY + Minecraft.getMinecraft().getRenderPartialTicks() * (Minecraft.getMinecraft().player.posY - Minecraft.getMinecraft().player.lastTickPosY);
-                double z = Minecraft.getMinecraft().player.lastTickPosZ + Minecraft.getMinecraft().getRenderPartialTicks() * (Minecraft.getMinecraft().player.posZ - Minecraft.getMinecraft().player.lastTickPosZ);
-                ((ITileEntitySpecialRendererLater) render).renderLater(list.get(i), list.get(i).getPos().getX() - x, list.get(i).getPos().getY() - y, list.get(i).getPos().getZ() - z, Minecraft.getMinecraft().getRenderPartialTicks());
-            }
+//            if (render instanceof ITileEntitySpecialRendererLater) {
+//                double x = Minecraft.getMinecraft().player.lastTickPosX + Minecraft.getMinecraft().getRenderPartialTicks() * (Minecraft.getMinecraft().player.posX - Minecraft.getMinecraft().player.lastTickPosX);
+//                double y = Minecraft.getMinecraft().player.lastTickPosY + Minecraft.getMinecraft().getRenderPartialTicks() * (Minecraft.getMinecraft().player.posY - Minecraft.getMinecraft().player.lastTickPosY);
+//                double z = Minecraft.getMinecraft().player.lastTickPosZ + Minecraft.getMinecraft().getRenderPartialTicks() * (Minecraft.getMinecraft().player.posZ - Minecraft.getMinecraft().player.lastTickPosZ);
+//                ((ITileEntitySpecialRendererLater) render).renderLater(list.get(i), list.get(i).getPos().getX() - x, list.get(i).getPos().getY() - y, list.get(i).getPos().getZ() - z, Minecraft.getMinecraft().getRenderPartialTicks());
+//            }
         }
         GlStateManager.popMatrix();
     }

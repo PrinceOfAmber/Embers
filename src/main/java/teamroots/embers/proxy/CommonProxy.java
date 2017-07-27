@@ -7,10 +7,8 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import teamroots.embers.Embers;
 import teamroots.embers.RegistryManager;
 import teamroots.embers.gui.GuiHandler;
-import teamroots.embers.network.PacketHandler;
-import teamroots.embers.recipe.RecipeRegistry;
-import teamroots.embers.reflection.Fields;
-import teamroots.embers.research.ResearchManager;
+import teamroots.embers.network.PacketHandler; 
+import teamroots.embers.reflection.Fields; 
 import teamroots.embers.util.EmberGenUtil;
 import teamroots.embers.util.ItemModUtil;
 
@@ -22,11 +20,11 @@ public class CommonProxy {
         RegistryManager.registerAll();
         EmberGenUtil.init();
         ItemModUtil.init();
-        ResearchManager.initResearches();
+ 
     }
 
     public void init(FMLInitializationEvent event) {
-        RecipeRegistry.initOreDict();
+ 
     }
 
     public void postInit(FMLPostInitializationEvent event) {

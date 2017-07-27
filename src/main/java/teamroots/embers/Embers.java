@@ -1,6 +1,7 @@
 package teamroots.embers;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -14,8 +15,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import teamroots.embers.proxy.CommonProxy;
-import teamroots.embers.recipe.RecipeRegistry;
+import teamroots.embers.proxy.CommonProxy; 
 
 @Mod(modid = Embers.MODID, name = Embers.MODNAME, version = Embers.VERSION, dependencies = Embers.DEPENDENCIES)
 public class Embers {
@@ -36,22 +36,11 @@ public class Embers {
         @Override
         @SideOnly(Side.CLIENT)
         public ItemStack getTabIconItem() {
-            return new ItemStack(RegistryManager.crystal_ember, 1);
+            return new ItemStack(Blocks.MOB_SPAWNER);
         }
     };
 
-    public static CreativeTabs resource_tab = new CreativeTabs("embers_resources") {
-        @Override
-        public String getTabLabel() {
-            return "embers_resources";
-        }
-
-        @Override
-        @SideOnly(Side.CLIENT)
-        public ItemStack getTabIconItem() {
-            return new ItemStack(RegistryManager.ingot_dawnstone, 1);
-        }
-    };
+ 
 
     @Instance("embers")
     public static Embers instance;
@@ -65,7 +54,7 @@ public class Embers {
         MinecraftForge.EVENT_BUS.register(new EventManager());
         MinecraftForge.EVENT_BUS.register(new ConfigManager());
         MinecraftForge.EVENT_BUS.register(new RegistryManager());
-        MinecraftForge.EVENT_BUS.register(new RecipeRegistry());
+     
         ConfigManager.init(event.getSuggestedConfigurationFile());
         proxy.preInit(event);
     }

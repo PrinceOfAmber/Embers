@@ -94,10 +94,7 @@ public class EmberGenUtil {
     }
 
     public static void init() {
-        registerEmberFuelItem(RegistryManager.shard_ember, 400);
-        registerEmberFuelItem(RegistryManager.crystal_ember, 2400);
-        registerEmberFuelItem(RegistryManager.ember_cluster, 3600);
-
+  
         registerMetalCoefficient("blockGold", 1.0f);
         registerMetalCoefficient("blockSilver", 1.0f);
         registerMetalCoefficient("blockCopper", 1.0f);
