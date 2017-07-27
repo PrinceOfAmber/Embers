@@ -64,20 +64,6 @@ public class EventManager {
         event.getMap().registerSprite(particleSmoke);
     }
 
-    @SubscribeEvent
-    public void onServerTick(WorldTickEvent event) {
-        if (event.world.provider.getDimensionType() == DimensionType.OVERWORLD) {
-//            if (Misc.random.nextInt(400) == 0) {
-//                EmberGenUtil.offX++;
-//                EmberWorldData.get(event.world).markDirty();
-//            }
-//            if (Misc.random.nextInt(400) == 0) {
-//                EmberGenUtil.offZ++;
-//                EmberWorldData.get(event.world).markDirty();
-//            }
-            //PacketHandler.INSTANCE.sendToAll(new MessageEmberGenOffset(EmberGenUtil.offX, EmberGenUtil.offZ));
-        }
-    }
  
 
     @SideOnly(Side.CLIENT)
@@ -175,20 +161,7 @@ public class EventManager {
         if (event.side == Side.CLIENT && event.phase == TickEvent.Phase.START) {
             ticks++;
             ClientProxy.particleRenderer.updateParticles();
-
-//            EntityPlayer player = Minecraft.getMinecraft().player;
-//            if (player != null) {
-//                World world = player.getEntityWorld();
-//                RayTraceResult result = player.rayTrace(6.0, Minecraft.getMinecraft().getRenderPartialTicks());
-//                if (result != null) {
-//                    if (result.typeOfHit == RayTraceResult.Type.BLOCK) {
-//                        IBlockState state = world.getBlockState(result.getBlockPos());
-//                        if (state.getBlock() instanceof IDial) {
-//                            ((IDial) state.getBlock()).updateTEData(world, state, result.getBlockPos());
-//                        }
-//                    }
-//                }
-//            }
+ 
         }
     }
 
@@ -209,30 +182,7 @@ public class EventManager {
                 event.setAmount(event.getAmount() * 0.5f);
             }
         }
-        if (event.getSource().getTrueSource() != null) {
-            if (event.getSource().getTrueSource() instanceof EntityPlayer) {
-//                if (((EntityPlayer) event.getSource().getTrueSource()).getHeldItemMainhand().getItem() == RegistryManager.tyrfing) {
-//                    if (!event.getEntity().world.isRemote) {
-//                        PacketHandler.INSTANCE.sendToAll(new MessageTyrfingBurstFX(event.getEntity().posX, event.getEntity().posY + event.getEntity().height / 2.0f, event.getEntity().posZ));
-//                    }
-//                    EntityPlayer p = ((EntityPlayer) event.getSource().getTrueSource());
-//                    event.setAmount((event.getAmount() / 4.0f) * (4.0f + (float) event.getEntityLiving().getEntityAttribute(SharedMonsterAttributes.ARMOR).getAttributeValue() * 1.0f));
-//                }
-//                if (((EntityPlayer) event.getSource().getTrueSource()).getHeldItemMainhand() != ItemStack.EMPTY) {
-//                    if (((EntityPlayer) event.getSource().getTrueSource()).getHeldItemMainhand().getItem() instanceof IEmberChargedTool) {
-//                        if (((IEmberChargedTool) ((EntityPlayer) event.getSource().getTrueSource()).getHeldItemMainhand().getItem()).hasEmber(((EntityPlayer) event.getSource().getTrueSource()).getHeldItemMainhand()) || ((EntityPlayer) event.getSource().getTrueSource()).capabilities.isCreativeMode) {
-//                            event.getEntityLiving().setFire(1);
-//                            if (!event.getEntityLiving().getEntityWorld().isRemote) {
-//                                PacketHandler.INSTANCE.sendToAll(new MessageEmberBurstFX(event.getEntityLiving().posX, event.getEntityLiving().posY + event.getEntityLiving().getEyeHeight() / 1.5, event.getEntityLiving().posZ));
-//                                ((EntityPlayer) event.getSource().getTrueSource()).getHeldItemMainhand().getTagCompound().setBoolean("didUse", true);
-//                            }
-//                        } else {
-//                            event.setCanceled(true);
-//                        }
-//                    }
-//                }
-            }
-        }
+        
     } 
  
 
@@ -245,76 +195,7 @@ public class EventManager {
             ClientProxy.particleRenderer.renderParticles(clientPlayer, event.getPartialTicks());
             GlStateManager.popMatrix();
         }
-        List<TileEntity> list = Minecraft.getMinecraft().world.loadedTileEntityList;
-        GlStateManager.pushMatrix();
-        for (int i = 0; i < list.size(); i++) {
-            TileEntitySpecialRenderer render = TileEntityRendererDispatcher.instance.getRenderer(list.get(i));
-//            if (render instanceof ITileEntitySpecialRendererLater) {
-//                double x = Minecraft.getMinecraft().player.lastTickPosX + Minecraft.getMinecraft().getRenderPartialTicks() * (Minecraft.getMinecraft().player.posX - Minecraft.getMinecraft().player.lastTickPosX);
-//                double y = Minecraft.getMinecraft().player.lastTickPosY + Minecraft.getMinecraft().getRenderPartialTicks() * (Minecraft.getMinecraft().player.posY - Minecraft.getMinecraft().player.lastTickPosY);
-//                double z = Minecraft.getMinecraft().player.lastTickPosZ + Minecraft.getMinecraft().getRenderPartialTicks() * (Minecraft.getMinecraft().player.posZ - Minecraft.getMinecraft().player.lastTickPosZ);
-//                ((ITileEntitySpecialRendererLater) render).renderLater(list.get(i), list.get(i).getPos().getX() - x, list.get(i).getPos().getY() - y, list.get(i).getPos().getZ() - z, Minecraft.getMinecraft().getRenderPartialTicks());
-//            }
-        }
-        GlStateManager.popMatrix();
+ 
     }
-
-    @SubscribeEvent
-    public void onBlockBreak(BreakSpeed event) {
-        event.getOriginalSpeed();
-    }
-
-//    @SubscribeEvent
-//    public void onWorldTick(TickEvent.WorldTickEvent event) {
-//        if (!event.world.isRemote && event.phase == TickEvent.Phase.END) {
-//            NBTTagList list = new NBTTagList();
-//            acceptUpdates = false;
-//            TileEntity[] updateArray = toUpdate.values().toArray(new TileEntity[0]);
-//            acceptUpdates = true;
-//            for (Entry<BlockPos, TileEntity> e : overflow.entrySet()) {
-//                toUpdate.put(e.getKey(), e.getValue());
-//            }
-//            overflow.clear();
-//            for (int i = 0; i < updateArray.length; i++) {
-//                TileEntity t = updateArray[i];
-//                list.appendTag(t.getUpdateTag());
-//            }
-////            if (!list.hasNoTags()) {
-////                NBTTagCompound tag = new NBTTagCompound();
-////                tag.setTag("data", list);
-////                PacketHandler.INSTANCE.sendToAll(new MessageTEUpdate(tag));
-////            }
-//            toUpdate.clear();
-//        }
-//    }
-
-//    public static void markTEForUpdate(BlockPos pos, TileEntity tile) {
-//        if (!tile.getWorld().isRemote && acceptUpdates) {
-//            if (!toUpdate.containsKey(pos)) {
-//                toUpdate.put(pos, tile);
-//            } else {
-//                toUpdate.replace(pos, tile);
-//            }
-//        } else if (!tile.getWorld().isRemote) {
-//            if (!overflow.containsKey(pos)) {
-//                overflow.put(pos, tile);
-//            } else {
-//                overflow.replace(pos, tile);
-//            }
-//        }
-//    }
-
-    @SideOnly(Side.CLIENT)
-    public static void drawScaledCustomSizeModalRect(double x, double y, float u, float v, float uWidth, float vHeight, double width, double height, float tileWidth, float tileHeight) {
-        float f = 1.0F / tileWidth;
-        float f1 = 1.0F / tileHeight;
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder BufferBuilder = tessellator.getBuffer();
-        BufferBuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-        BufferBuilder.pos(x, y + height, 0.0D).tex((double) (u * f), (double) ((v + vHeight) * f1)).endVertex();
-        BufferBuilder.pos(x + width, y + height, 0.0D).tex((double) ((u + uWidth) * f), (double) ((v + vHeight) * f1)).endVertex();
-        BufferBuilder.pos(x + width, y, 0.0D).tex((double) ((u + uWidth) * f), (double) (v * f1)).endVertex();
-        BufferBuilder.pos(x, y, 0.0D).tex((double) (u * f), (double) (v * f1)).endVertex();
-        tessellator.draw();
-    }
+ 
 }
