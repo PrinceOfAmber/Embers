@@ -8,6 +8,7 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import teamroots.embers.Const;
 import teamroots.embers.Embers;
 
 public class EntityAncientGolem extends EntityMob {
@@ -60,6 +61,6 @@ public class EntityAncientGolem extends EntityMob {
 
     @Override
     public ResourceLocation getLootTable() {
-        return new ResourceLocation(Embers.MODID , "entity/ancient_golem");
+        return new ResourceLocation(Const.MODID , "entity/ancient_golem");
     }
 }

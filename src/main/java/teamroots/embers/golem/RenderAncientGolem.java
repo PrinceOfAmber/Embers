@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
+import teamroots.embers.Const;
 import teamroots.embers.Embers;
  
 
@@ -22,7 +23,7 @@ public class RenderAncientGolem extends RenderLiving<EntityAncientGolem> {
 
     @Override
     protected ResourceLocation getEntityTexture(EntityAncientGolem entity) {
-        return new ResourceLocation(Embers.MODID,"textures/entity/golem.png");
+        return new ResourceLocation(Const.MODID,"textures/entity/golem.png");
     }
     public static ModelBase model;
     public static class Factory implements IRenderFactory<EntityAncientGolem> {

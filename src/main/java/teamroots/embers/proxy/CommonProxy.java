@@ -5,12 +5,13 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
+import teamroots.embers.Const;
 import teamroots.embers.Embers;
 import teamroots.embers.golem.GolemRegistry;
 import teamroots.embers.golem.MessageEmberSizedBurstFX;
 
 public class CommonProxy {
-  public static SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Embers.MODID);
+  public static SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel( Const.MODID);
   public void preInit(FMLPreInitializationEvent event) {
     //       Fields.init();
     int id = 0;

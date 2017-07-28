@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import teamroots.embers.Const;
 import teamroots.embers.Embers;
 
 public class ParticleGlow extends Particle implements IEmberParticle {
@@ -15,7 +16,7 @@ public class ParticleGlow extends Particle implements IEmberParticle {
   public float colorB = 0;
   public float initScale = 0;
   public float initAlpha = 0;
-  public static ResourceLocation texture = new ResourceLocation(Embers.MODID,"entity/particle_mote");
+  public static ResourceLocation texture = new ResourceLocation(Const.MODID,"entity/particle_mote");
   public ParticleGlow(World worldIn, double x, double y, double z, double vx, double vy, double vz, float r, float g, float b, float a, float scale, int lifetime) {
     super(worldIn, x, y, z, 0, 0, 0);
     this.colorR = r;

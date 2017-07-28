@@ -17,16 +17,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import teamroots.embers.golem.GolemRegistry;
 import teamroots.embers.proxy.CommonProxy;
 
-@Mod(modid = Embers.MODID)
+@Mod(modid = Const.MODID)
 public class Embers {
-  public static final String MODID = "embers";
   public static final String MODNAME = "Embers";
   @SidedProxy(clientSide = "teamroots.embers.proxy.ClientProxy", serverSide = "teamroots.embers.proxy.ServerProxy")
   public static CommonProxy proxy;
-  public static CreativeTabs tab = new CreativeTabs(MODID) {
+  public static CreativeTabs tab = new CreativeTabs( Const.MODID) {
     @Override
     public String getTabLabel() {
-      return MODID;
+      return Const.MODID;
     }
     @Override
     @SideOnly(Side.CLIENT)
@@ -34,7 +33,7 @@ public class Embers {
       return new ItemStack(Blocks.MOB_SPAWNER);
     }
   };
-  @Instance(MODID)
+  @Instance( Const.MODID)
   public static Embers instance;
   @EventHandler
   public void preInit(FMLPreInitializationEvent event) {
