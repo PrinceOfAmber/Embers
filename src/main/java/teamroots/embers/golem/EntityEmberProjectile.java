@@ -14,7 +14,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import teamroots.embers.Embers;
-import teamroots.embers.RegistryManager;
 import teamroots.embers.proxy.ClientProxy;
 import teamroots.embers.proxy.CommonProxy;
 import java.util.ArrayList;
@@ -126,7 +125,7 @@ public class EntityEmberProjectile extends Entity/* implements ILightProvider*/ 
             }
             if (entities.size() > 0) {
                 for (EntityLivingBase target : entities) {
-                    DamageSource source = RegistryManager.damage_ember;
+                    DamageSource source = GolemRegistry.damage_ember;
                     if (getEntityWorld().getPlayerEntityByUUID(id) != null) {
                         EntityPlayer player = getEntityWorld().getPlayerEntityByUUID(id);
                         source = DamageSource.causePlayerDamage(player);

@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import teamroots.embers.golem.GolemRegistry;
 import teamroots.embers.proxy.CommonProxy;
 
 @Mod(modid = Embers.MODID)
@@ -35,25 +36,9 @@ public class Embers {
   };
   @Instance(MODID)
   public static Embers instance;
-  static {
-    FluidRegistry.enableUniversalBucket();
-  }
   @EventHandler
   public void preInit(FMLPreInitializationEvent event) {
-    MinecraftForge.EVENT_BUS.register(new EventManager());
-    MinecraftForge.EVENT_BUS.register(new RegistryManager());
+    MinecraftForge.EVENT_BUS.register(new GolemRegistry());
     proxy.preInit(event);
-  }
-  @EventHandler
-  public void init(FMLInitializationEvent event) {
-    proxy.init(event);
-  }
-  @EventHandler
-  public void postInit(FMLPostInitializationEvent event) {
-    proxy.postInit(event);
-  }
-  @EventHandler
-  public void serverStarting(FMLServerStartingEvent event) {
-    //event.registerServerCommand(new CommandEmberFill());
   }
 }

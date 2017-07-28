@@ -1,4 +1,4 @@
-package teamroots.embers.particle;
+package teamroots.embers.golem;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;

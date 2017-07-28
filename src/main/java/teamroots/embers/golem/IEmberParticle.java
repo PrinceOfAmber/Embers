@@ -1,4 +1,4 @@
-package teamroots.embers.particle;
+package teamroots.embers.golem;
 
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.entity.player.EntityPlayer;
