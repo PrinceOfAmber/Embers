@@ -1,49 +1,29 @@
-package teamroots.embers.golem;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
+package teamroots.emberoot.golem;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
-import net.minecraft.item.Item.ToolMaterial;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
 import net.minecraftforge.common.BiomeManager.BiomeType;
-import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.OreDictionary;
-import teamroots.embers.Const;
-import teamroots.embers.Embers;
-import teamroots.embers.golem.*;
-import teamroots.embers.proxy.ClientProxy;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import teamroots.emberoot.Const;
+import teamroots.emberoot.Embers;
+import teamroots.emberoot.proxy.ClientProxy;
 
 public class GolemRegistry {
   public static DamageSource damage_ember;
@@ -77,17 +57,14 @@ public class GolemRegistry {
     //  RenderingRegistry.registerEntityRenderingHandler(EntityEmberLight.class, new RenderEmberPacket(Minecraft.getMinecraft().getRenderManager()));
   }
   static float tickCounter = 0;
-  
   static int ticks = 0;
- 
   static EntityPlayer clientPlayer = null;
   double gaugeAngle = 0;
   Random random = new Random();
   @SideOnly(Side.CLIENT)
   @SubscribeEvent
-  public void onTextureStitch(TextureStitchEvent event) { 
+  public void onTextureStitch(TextureStitchEvent event) {
     event.getMap().registerSprite(ParticleGlow.texture);
-         
   }
   @SideOnly(Side.CLIENT)
   @SubscribeEvent(priority = EventPriority.HIGHEST)

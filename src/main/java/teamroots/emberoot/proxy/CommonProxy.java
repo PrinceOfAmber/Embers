@@ -1,17 +1,14 @@
-package teamroots.embers.proxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+package teamroots.emberoot.proxy;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
-import teamroots.embers.Const;
-import teamroots.embers.Embers;
-import teamroots.embers.golem.GolemRegistry;
-import teamroots.embers.golem.MessageEmberSizedBurstFX;
+import teamroots.emberoot.Const;
+import teamroots.emberoot.golem.GolemRegistry;
+import teamroots.emberoot.golem.MessageEmberSizedBurstFX;
 
 public class CommonProxy {
-  public static SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel( Const.MODID);
+  public static SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Const.MODID);
   public void preInit(FMLPreInitializationEvent event) {
     //       Fields.init();
     int id = 0;
@@ -19,5 +16,4 @@ public class CommonProxy {
     //INSTANCE.registerMessage(MessageSpawnEmberProj.MessageHolder.class, MessageSpawnEmberProj.class, id++, Side.SERVER);
     GolemRegistry.registerAll();
   }
-  
 }
