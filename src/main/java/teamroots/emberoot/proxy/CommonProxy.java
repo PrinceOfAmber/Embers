@@ -10,10 +10,10 @@ import teamroots.emberoot.golem.MessageEmberSizedBurstFX;
 public class CommonProxy {
   public static SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Const.MODID);
   public void preInit(FMLPreInitializationEvent event) {
-    //       Fields.init();
+  
     int id = 0;
     INSTANCE.registerMessage(MessageEmberSizedBurstFX.MessageHolder.class, MessageEmberSizedBurstFX.class, id++, Side.CLIENT);
-    //INSTANCE.registerMessage(MessageSpawnEmberProj.MessageHolder.class, MessageSpawnEmberProj.class, id++, Side.SERVER);
+   
     GolemRegistry.registerAll();
   }
 }

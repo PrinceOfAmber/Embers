@@ -64,7 +64,7 @@ public class GolemRegistry {
   @SideOnly(Side.CLIENT)
   @SubscribeEvent
   public void onTextureStitch(TextureStitchEvent event) {
-    event.getMap().registerSprite(ParticleGlow.texture);
+    event.getMap().registerSprite(ParticleMote.texture);
   }
   @SideOnly(Side.CLIENT)
   @SubscribeEvent(priority = EventPriority.HIGHEST)
